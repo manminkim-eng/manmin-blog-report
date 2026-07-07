@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANMIN 블로그 리포트</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<style>
+ :root{--bg:#0B1626;--panel:#14233A;--panel2:#1B2E4A;--line:#2A3F5F;--gold:#D4A017;--ink:#E9ECF2;--muted:#8A99B5}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{background:var(--bg);color:var(--ink);font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;line-height:1.5;
+  background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:44px 44px}
+ .wrap{max-width:1180px;margin:0 auto;padding:28px 16px 56px}
+ header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;border-bottom:2px solid var(--gold);padding-bottom:16px}
+ .brand{display:flex;align-items:center;gap:12px} .brand img{width:38px;height:38px}
+ h1{font-size:22px;font-weight:800;letter-spacing:-.5px}
+ .sub{color:var(--muted);font-size:12.5px;margin-top:4px}
+ .period{color:var(--gold);font-size:12.5px}
+ .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:20px 0}
+ .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 14px;position:relative;overflow:hidden}
+ .kpi::before{content:"";position:absolute;left:0;top:0;width:4px;height:100%;background:var(--gold)}
+ .kpi .k{color:var(--muted);font-size:11px} .kpi .v{font-size:21px;font-weight:800;margin-top:3px}
+ .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 18px}
+ .toolbar a{font-size:12px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 12px;text-decoration:none}
+ .toolbar a:hover{border-color:var(--gold)}
+ .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+ .card h2{font-size:14.5px;font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+ .card h2 .dot{width:9px;height:9px;border-radius:2px;flex:none} .card h2 .cnt{color:var(--muted);font-size:11.5px;font-weight:500}
+ table{width:100%;border-collapse:collapse;font-size:12.5px}
+ th{text-align:left;color:var(--muted);font-weight:600;font-size:11px;border-bottom:1px solid var(--line);padding:6px 8px}
+ td{border-bottom:1px solid rgba(42,63,95,.5);padding:8px} td.nm{font-weight:600;min-width:120px}
+ td.kv b{color:var(--gold)} td.nt{color:var(--muted);font-size:11.5px}
+ td.dl a{color:var(--gold);text-decoration:none;font-size:11.5px;border:1px solid var(--line);border-radius:6px;padding:3px 8px;white-space:nowrap}
+ td.dl a:hover{border-color:var(--gold)}
+ footer{color:var(--muted);font-size:11.5px;text-align:center;margin-top:24px;border-top:1px solid var(--line);padding-top:16px}
+ footer a{color:var(--gold);text-decoration:none}
+ @media(max-width:860px){.kpis{grid-template-columns:repeat(3,1fr)}td.nt{display:none}th:nth-child(3){display:none}}
+ @media(max-width:520px){.kpis{grid-template-columns:repeat(2,1fr)}}
+
+ .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:22px}
+ .mcard{display:block;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:14px;padding:18px 20px;text-decoration:none;color:var(--ink);transition:.15s}
+ .mcard:hover{border-color:var(--gold);transform:translateY(-2px)}
+ .mcard .mv{font-size:26px;font-weight:800;letter-spacing:-.5px}
+ .mcard .mk{color:var(--muted);font-size:12px;margin-top:4px} .mcard .go{color:var(--gold);font-size:12px;margin-top:12px}
+ .lead{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:15px 18px;margin-top:16px;font-size:13.5px}
+</style></head><body><div class="wrap">
+ <header><div class="brand"><img src="assets/favicon.svg" alt="MANMIN"><div>
+   <h1>MANMIN 블로그 성과 리포트</h1>
+   <div class="sub">네이버 블로그 manmin72 월간 분석 아카이브 · 건축사 김만민(#20072)</div></div></div>
+   <div class="period">총 1개월 색인</div></header>
+ <div class="lead"><b>MANMIN 답사·엔지니어링</b> 블로그의 월간 방문·유입·콘텐츠·이웃 지표를 매월 색인합니다. 아래 월을 선택하면 해당 월 상세 인덱스로 이동합니다.</div>
+ <div class="mgrid"><a class="mcard" href="2026-06/index.html"><div class="mv">2026.06</div><div class="mk">월간 분석 · 지표 24종</div><div class="go">열기 →</div></a></div>
+ <footer>매월 초 갱신 · <a href="https://blog.naver.com/manmin72">blog.naver.com/manmin72</a> ·
+  <a href="https://manminkim-eng.github.io/KIMMANMIN/">엔지니어링 플랫폼</a></footer>
+</div></body></html>

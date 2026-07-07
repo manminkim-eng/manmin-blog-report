@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANMIN 블로그 성과 대시보드</title>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<style>
+  :root{
+    --bg:#0B1626; --panel:#14233A; --panel2:#1B2E4A; --line:#2A3F5F;
+    --gold:#D4A017; --ink:#E9ECF2; --muted:#8A99B5;
+    --c-tour:#D4A017; --c-story:#C8452F; --c-eng:#3E7CB1; --c-gear:#5FA98C;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);
+    font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR','Nanum Gothic',system-ui,sans-serif;line-height:1.5;
+    background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+    background-size:44px 44px;-webkit-text-size-adjust:100%}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 16px 56px}
+  header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;border-bottom:2px solid var(--gold);padding-bottom:16px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .bar{width:11px;height:42px;background:var(--gold);flex:none}
+  h1{font-size:23px;font-weight:800;letter-spacing:-.5px}
+  .sub{color:var(--muted);font-size:12.5px;margin-top:4px}
+  .period{color:var(--gold);font-size:12.5px}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
+  .toolbar a{font-size:12px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 12px;text-decoration:none}
+  .toolbar a:hover{border-color:var(--gold)}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden}
+  .kpi::before{content:"";position:absolute;left:0;top:0;width:4px;height:100%;background:var(--gold)}
+  .kpi .k{color:var(--muted);font-size:12px}
+  .kpi .v{font-size:27px;font-weight:800;margin-top:4px;letter-spacing:-.5px}
+  .kpi .d{font-size:11.5px;margin-top:3px;color:#6BD08A}
+  .kpi .d.flat{color:var(--muted)}
+  .insight{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line);border-left:4px solid var(--gold);
+    border-radius:12px;padding:15px 18px;margin:14px 0 20px;font-size:13.5px}
+  .insight b{color:var(--gold)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .card.tall{grid-column:span 2}
+  .card h2{font-size:14.5px;font-weight:700;display:flex;align-items:center;gap:8px}
+  .card h2 .dot{width:9px;height:9px;background:var(--gold);border-radius:2px;flex:none}
+  .card .cap{color:var(--muted);font-size:11.5px;margin:2px 0 12px}
+  svg{display:block;width:100%;height:auto;overflow:visible}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  .chip{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted)}
+  .chip i{width:10px;height:10px;border-radius:2px;display:inline-block}
+  .note{background:var(--panel);border:1px dashed var(--line);border-radius:10px;padding:12px 15px;color:var(--muted);font-size:11.5px;margin-top:16px}
+  footer{color:var(--muted);font-size:11.5px;text-align:center;margin-top:30px;border-top:1px solid var(--line);padding-top:16px}
+  footer a{color:var(--gold);text-decoration:none}
+  @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.card.tall{grid-column:span 1}h1{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><div class="bar"></div>
+      <div><h1>MANMIN 블로그 성과 대시보드</h1>
+      <div class="sub">네이버 블로그 manmin72 · 건축사 김만민 · 방문·유입·콘텐츠 통합 분석</div></div>
+    </div>
+    <div class="period" id="periodLabel">2026.06 월간 (개설 2026.04~)</div>
+  </header>
+  <div class="toolbar"><a href="index.html">📑 데이터 인덱스</a><a href="../index.html">🏠 전체 리포트</a><a href="https://blog.naver.com/manmin72" target="_blank">✍ 네이버 블로그</a></div>
+  <section class="kpis" id="kpis"><div class="kpi"><div class="k">순방문자수(월)</div><div class="v">1,070</div><div class="d ">전월 대비 +139%</div></div><div class="kpi"><div class="k">평균 사용시간</div><div class="v">3m 55s</div><div class="d ">전월 2m31s ↑</div></div><div class="kpi"><div class="k">이웃 증가(월)</div><div class="v">+37</div><div class="d ">전월 +1</div></div><div class="kpi"><div class="k">상위 글 조회 합</div><div class="v">1,316</div><div class="d flat">상위 62편 합계</div></div></section>
+  <div class="insight" id="headline">핵심: 3개월 만에 월 UV <b>160&#8594;1,070</b>(+569%)로 급성장. <b>답사기</b>가 조회 총량(64.7%)을 견인하고, <b>개인서사</b>는 편당 평균 <b>99.5</b>회로 효율 최강 — 가장 확장 여지가 큰 축입니다.</div>
+  <section class="grid">
+    <div class="card"><h2><span class="dot"></span>순방문자수(UV) 성장</h2><div class="cap">월간 순방문자 · 2026.04 실질 개설 이후</div><div id="uvChart"><svg viewBox="0 0 400 210" preserveAspectRatio="xMidYMid meet"><line x1="42" y1="182" x2="386" y2="182" stroke="#2A3F5F"/><text x="36" y="185" fill="#8A99B5" font-size="10" text-anchor="end" >0</text><line x1="42" y1="99" x2="386" y2="99" stroke="#2A3F5F"/><text x="36" y="102" fill="#8A99B5" font-size="10" text-anchor="end" >550</text><line x1="42" y1="16" x2="386" y2="16" stroke="#2A3F5F"/><text x="36" y="19" fill="#8A99B5" font-size="10" text-anchor="end" >1,100</text><path d="M42 157.85454545454544 L214 114.39272727272729 L386 20.52727272727272 L386 182 L42 182 Z" fill="rgba(212,160,23,.15)"/><path d="M42 157.85454545454544 L214 114.39272727272729 L386 20.52727272727272" fill="none" stroke="#D4A017" stroke-width="3"/><circle cx="42" cy="157.85454545454544" r="4.5" fill="#D4A017"/><text x="42" y="148.85454545454544" fill="#E9ECF2" font-size="11" text-anchor="middle" font-weight="700">160</text><text x="42" y="200" fill="#8A99B5" font-size="11" text-anchor="middle" >04월</text><circle cx="214" cy="114.39272727272729" r="4.5" fill="#D4A017"/><text x="214" y="105.39272727272729" fill="#E9ECF2" font-size="11" text-anchor="middle" font-weight="700">448</text><text x="214" y="200" fill="#8A99B5" font-size="11" text-anchor="middle" >05월</text><circle cx="386" cy="20.52727272727272" r="4.5" fill="#D4A017"/><text x="386" y="11.52727272727272" fill="#E9ECF2" font-size="11" text-anchor="middle" font-weight="700">1,070</text><text x="386" y="200" fill="#8A99B5" font-size="11" text-anchor="middle" >06월</text></svg></div></div>
+    <div class="card"><h2><span class="dot"></span>유입 채널 구성</h2><div class="cap">2026.06 월간 · 검색 계열 약 65%</div><div id="chanChart"><svg viewBox="0 0 400 210" preserveAspectRatio="xMidYMid meet"><circle cx="110" cy="105" r="74" fill="none" stroke="#D4A017" stroke-width="30" stroke-dasharray="179.47290511427772 285.48280761701164" stroke-dashoffset="0" transform="rotate(-90 110 105)"/><circle cx="110" cy="105" r="74" fill="none" stroke="#B8862F" stroke-width="30" stroke-dasharray="125.53804243744814 339.41767029384124" stroke-dashoffset="-179.47290511427772" transform="rotate(-90 110 105)"/><circle cx="110" cy="105" r="74" fill="none" stroke="#3E7CB1" stroke-width="30" stroke-dasharray="97.17574396083948 367.7799687704499" stroke-dashoffset="-305.01094755172585" transform="rotate(-90 110 105)"/><circle cx="110" cy="105" r="74" fill="none" stroke="#5FA98C" stroke-width="30" stroke-dasharray="34.40672274211542 430.54898998917395" stroke-dashoffset="-402.18669151256535" transform="rotate(-90 110 105)"/><circle cx="110" cy="105" r="74" fill="none" stroke="#5A6B85" stroke-width="30" stroke-dasharray="27.89734276387736 437.05836996741203" stroke-dashoffset="-436.59341425468074" transform="rotate(-90 110 105)"/><text x="110" y="110" fill="#E9ECF2" font-size="13" text-anchor="middle" font-weight="700">검색 65%</text><rect x="228" y="24" width="12" height="12" rx="2" fill="#D4A017"/><text x="248" y="34" fill="#E9ECF2" font-size="12" text-anchor="start" >네이버검색</text><text x="392" y="34" fill="#8A99B5" font-size="12" text-anchor="end" font-weight="700">38.6%</text><rect x="228" y="56" width="12" height="12" rx="2" fill="#B8862F"/><text x="248" y="66" fill="#E9ECF2" font-size="12" text-anchor="start" >네이버블로그/이웃</text><text x="392" y="66" fill="#8A99B5" font-size="12" text-anchor="end" font-weight="700">27%</text><rect x="228" y="88" width="12" height="12" rx="2" fill="#3E7CB1"/><text x="248" y="98" fill="#E9ECF2" font-size="12" text-anchor="start" >Daum</text><text x="392" y="98" fill="#8A99B5" font-size="12" text-anchor="end" font-weight="700">20.9%</text><rect x="228" y="120" width="12" height="12" rx="2" fill="#5FA98C"/><text x="248" y="130" fill="#E9ECF2" font-size="12" text-anchor="start" >네이버메인</text><text x="392" y="130" fill="#8A99B5" font-size="12" text-anchor="end" font-weight="700">7.4%</text><rect x="228" y="152" width="12" height="12" rx="2" fill="#5A6B85"/><text x="248" y="162" fill="#E9ECF2" font-size="12" text-anchor="start" >기타</text><text x="392" y="162" fill="#8A99B5" font-size="12" text-anchor="end" font-weight="700">6%</text></svg></div></div>
+    <div class="card"><h2><span class="dot"></span>독자 성·연령 분포</h2><div class="cap">2026.06 조회 기준 · 40대 이상 61.8%</div><div id="ageChart"><svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid meet"><text x="40" y="14" fill="#3E7CB1" font-size="11" text-anchor="start" >◀ 남</text><text x="360" y="14" fill="#C8452F" font-size="11" text-anchor="end" >여 ▶</text><rect x="198.76923076923077" y="24" width="1.2307692307692308" height="17" fill="#3E7CB1" rx="2"/><rect x="200" y="24" width="2.4615384615384617" height="17" fill="#C8452F" rx="2"/><text x="200" y="37" fill="#E9ECF2" font-size="9.5" text-anchor="middle" >13-18</text><rect x="197.53846153846155" y="45" width="2.4615384615384617" height="17" fill="#3E7CB1" rx="2"/><rect x="200" y="45" width="9.846153846153847" height="17" fill="#C8452F" rx="2"/><text x="200" y="58" fill="#E9ECF2" font-size="9.5" text-anchor="middle" >19-24</text><rect x="175.3846153846154" y="66" width="24.615384615384617" height="17" fill="#3E7CB1" rx="2"/><rect x="200" y="66" width="61.53846153846154" height="17" fill="#C8452F" rx="2"/><text x="200" y="79" fill="#E9ECF2" font-size="9.5" text-anchor="middle" >25-29</text><text x="258.53846153846155" y="79" fill="#fff" font-size="9" text-anchor="end" >50</text><rect x="176.6153846153846" y="87" width="23.384615384615383" height="17" fill="#3E7CB1" rx="2"/><rect x="200" y="87" width="43.07692307692308" height="17" fill="#C8452F" rx="2"/><text x="200" y="100" fill="#E9ECF2" font-size="9.5" text-anchor="middle" >30-34</text><rect x="153.23076923076923" y="108" width="46.76923076923077" height="17" fill="#3E7CB1" rx="2"/><rect x="200" y="108" width="59.07692307692308" height="17" fill="#C8452F" rx="2"/><text x="200" y="121" fill="#E9ECF2" font-size="9.5" text-anchor="middle" >35-39</text><text x="256.0769230769231" y="121" fill="#fff" font-size="9" text-anchor="end" >48</text><rect x="137.23076923076923" y="129" width="62.76923076923077" height="17" fill="#3E7CB1" rx="2"/><rect x="200" y="129" width="84.92307692307692" height="17" fill="#C8452F" rx="2"/><text x="200" y="142" fill="#E9ECF2" font-size="9.5" text-anchor="middle" >40-44</text><text x="140.23076923076923" y="142" fill="#fff" font-size="9" text-anchor="start" >51</text><text x="281.9230769230769" y="142" fill="#fff" font-size="9" text-anchor="end" >69</text><rect x="105.23076923076923" y="150" width="94.76923076923077" height="17" fill="#3E7CB1" rx="2"/><rect x="200" y="150" width="61.53846153846154" height="17" fill="#C8452F" rx="2"/><text x="200" y="163" fill="#E9ECF2" font-size="9.5" text-anchor="middle" >45-49</text><text x="108.23076923076923" y="163" fill="#fff" font-size="9" text-anchor="start" >77</text><text x="258.53846153846155" y="163" fill="#fff" font-size="9" text-anchor="end" >50</text><rect x="129.84615384615384" y="171" width="70.15384615384616" height="17" fill="#3E7CB1" rx="2"/><rect x="200" y="171" width="157.53846153846155" height="17" fill="#C8452F" rx="2"/><text x="200" y="184" fill="#E9ECF2" font-size="9.5" text-anchor="middle" >50-54</text><text x="132.84615384615384" y="184" fill="#fff" font-size="9" text-anchor="start" >57</text><text x="354.53846153846155" y="184" fill="#fff" font-size="9" text-anchor="end" >128</text><rect x="107.6923076923077" y="192" width="92.3076923076923" height="17" fill="#3E7CB1" rx="2"/><rect x="200" y="192" width="130.46153846153845" height="17" fill="#C8452F" rx="2"/><text x="200" y="205" fill="#E9ECF2" font-size="9.5" text-anchor="middle" >55-59</text><text x="110.6923076923077" y="205" fill="#fff" font-size="9" text-anchor="start" >75</text><text x="327.46153846153845" y="205" fill="#fff" font-size="9" text-anchor="end" >106</text><rect x="53.53846153846155" y="213" width="146.46153846153845" height="17" fill="#3E7CB1" rx="2"/><rect x="200" y="213" width="45.53846153846154" height="17" fill="#C8452F" rx="2"/><text x="200" y="226" fill="#E9ECF2" font-size="9.5" text-anchor="middle" >60-</text><text x="56.53846153846155" y="226" fill="#fff" font-size="9" text-anchor="start" >119</text></svg></div></div>
+    <div class="card"><h2><span class="dot"></span>카테고리 효율(편당 평균 조회)</h2><div class="cap">막대=평균 조회 · 괄호=편수</div><div id="catChart"><svg viewBox="0 0 400 210" preserveAspectRatio="xMidYMid meet"><line x1="20" y1="170" x2="392" y2="170" stroke="#2A3F5F"/><text x="18" y="173" fill="#8A99B5" font-size="9" text-anchor="end" >0</text><line x1="20" y1="99.09090909090908" x2="392" y2="99.09090909090908" stroke="#2A3F5F"/><text x="18" y="102.09090909090908" fill="#8A99B5" font-size="9" text-anchor="end" >50</text><line x1="20" y1="28.181818181818187" x2="392" y2="28.181818181818187" stroke="#2A3F5F"/><text x="18" y="31.181818181818187" fill="#8A99B5" font-size="9" text-anchor="end" >100</text><rect x="28" y="28.890909090909105" width="69.5" height="141.1090909090909" fill="#C8452F" rx="4"/><text x="62.75" y="23.890909090909105" fill="#E9ECF2" font-size="11" text-anchor="middle" font-weight="700">99.5</text><text x="62.75" y="186" fill="#E9ECF2" font-size="10.5" text-anchor="middle" >개인서사</text><text x="62.75" y="199" fill="#8A99B5" font-size="9.5" text-anchor="middle" >(2편)</text><rect x="119.5" y="130.57454545454544" width="69.5" height="39.42545454545455" fill="#D4A017" rx="4"/><text x="154.25" y="125.57454545454544" fill="#E9ECF2" font-size="11" text-anchor="middle" font-weight="700">27.8</text><text x="154.25" y="186" fill="#E9ECF2" font-size="10.5" text-anchor="middle" >답사</text><text x="154.25" y="199" fill="#8A99B5" font-size="9.5" text-anchor="middle" >(31편)</text><rect x="211" y="159.7890909090909" width="69.5" height="10.210909090909091" fill="#3E7CB1" rx="4"/><text x="245.75" y="154.7890909090909" fill="#E9ECF2" font-size="11" text-anchor="middle" font-weight="700">7.2</text><text x="245.75" y="186" fill="#E9ECF2" font-size="10.5" text-anchor="middle" >엔지니어링</text><text x="245.75" y="199" fill="#8A99B5" font-size="9.5" text-anchor="middle" >(27편)</text><rect x="302.5" y="127.45454545454547" width="69.5" height="42.54545454545454" fill="#5FA98C" rx="4"/><text x="337.25" y="122.45454545454547" fill="#E9ECF2" font-size="11" text-anchor="middle" font-weight="700">30</text><text x="337.25" y="186" fill="#E9ECF2" font-size="10.5" text-anchor="middle" >장비/IT</text><text x="337.25" y="199" fill="#8A99B5" font-size="9.5" text-anchor="middle" >(2편)</text></svg></div></div>
+    <div class="card tall"><h2><span class="dot"></span>조회수 상위 게시글 Top 8</h2><div class="cap">2026.06 월간 · 색상=카테고리</div><div id="topChart"><svg viewBox="0 0 760 278" preserveAspectRatio="xMidYMid meet"><text x="8" y="23" fill="#E9ECF2" font-size="12" text-anchor="start" >1. 1,871시간·건축사 시험 도전기</text><rect x="250" y="6" width="437.13684210526316" height="26" fill="#C8452F" rx="4"/><text x="693.1368421052632" y="23" fill="#E9ECF2" font-size="12" text-anchor="start" font-weight="700">179</text><text x="8" y="57" fill="#E9ECF2" font-size="12" text-anchor="start" >2. 익산 함라산 당일 코스</text><rect x="250" y="40" width="207.57894736842104" height="26" fill="#D4A017" rx="4"/><text x="463.57894736842104" y="57" fill="#E9ECF2" font-size="12" text-anchor="start" font-weight="700">85</text><text x="8" y="91" fill="#E9ECF2" font-size="12" text-anchor="start" >3. 전주 팔복예술공장 답사</text><rect x="250" y="74" width="197.81052631578947" height="26" fill="#D4A017" rx="4"/><text x="453.8105263157895" y="91" fill="#E9ECF2" font-size="12" text-anchor="start" font-weight="700">81</text><text x="8" y="125" fill="#E9ECF2" font-size="12" text-anchor="start" >4. 정읍 김명관 고택</text><rect x="250" y="108" width="173.38947368421051" height="26" fill="#D4A017" rx="4"/><text x="429.38947368421054" y="125" fill="#E9ECF2" font-size="12" text-anchor="start" font-weight="700">71</text><text x="8" y="159" fill="#E9ECF2" font-size="12" text-anchor="start" >5. 김제 귀신사·금산사 답사</text><rect x="250" y="142" width="156.29473684210527" height="26" fill="#D4A017" rx="4"/><text x="412.2947368421053" y="159" fill="#E9ECF2" font-size="12" text-anchor="start" font-weight="700">64</text><text x="8" y="193" fill="#E9ECF2" font-size="12" text-anchor="start" >6. 여산 나바위성당·두동교회</text><rect x="250" y="176" width="131.8736842105263" height="26" fill="#D4A017" rx="4"/><text x="387.87368421052633" y="193" fill="#E9ECF2" font-size="12" text-anchor="start" font-weight="700">54</text><text x="8" y="227" fill="#E9ECF2" font-size="12" text-anchor="start" >7. 정읍 피향정·무성서원</text><rect x="250" y="210" width="124.54736842105264" height="26" fill="#D4A017" rx="4"/><text x="380.5473684210526" y="227" fill="#E9ECF2" font-size="12" text-anchor="start" font-weight="700">51</text><text x="8" y="261" fill="#E9ECF2" font-size="12" text-anchor="start" >8. 부여 당일 여행 코스</text><rect x="250" y="244" width="117.22105263157894" height="26" fill="#D4A017" rx="4"/><text x="373.2210526315789" y="261" fill="#E9ECF2" font-size="12" text-anchor="start" font-weight="700">48</text></svg></div>
+      <div class="chips">
+        <span class="chip"><i style="background:#D4A017"></i>답사</span>
+        <span class="chip"><i style="background:#C8452F"></i>개인서사</span>
+        <span class="chip"><i style="background:#3E7CB1"></i>엔지니어링</span>
+        <span class="chip"><i style="background:#5FA98C"></i>장비/IT</span>
+      </div>
+    </div>
+  </section>
+  <div class="note" id="updnote">갱신 방법: 상단 DATA 객체 값만 매월 교체하면 모든 그래프가 자동 반영됩니다. 외부 서버·라이브러리 없이 단일 파일로 동작합니다.</div>
+  <footer>
+    MANMIN 답사·엔지니어링 · 건축사 김만민(#20072) ·
+    <a href="https://blog.naver.com/manmin72">blog.naver.com/manmin72</a> ·
+    <a href="https://manminkim-eng.github.io/KIMMANMIN/">엔지니어링 플랫폼</a> ·
+    <a href="https://www.youtube.com/@김만민-x8p">YouTube</a>
+    <div style="margin-top:6px">데이터: 네이버 블로그 통계 지표 다운로드 · 기준일 2026.07.07 · 외부 라이브러리 없이 동작</div>
+  </footer>
+</div>
+<script>
+/* ===== 매월 이 DATA 객체만 교체하면 갱신됩니다 (외부 CDN·폰트 불필요) ===== */
+var DATA={
+  period:"2026.06 월간 (개설 2026.04~)",
+  kpi:{uv:1070,uvGrowth:"전월 대비 +139%",useTime:"3m 55s",useDelta:"전월 2m31s ↑",neighbor:"+37",neighborDelta:"전월 +1",views:"1,316",viewsNote:"상위 62편 합계"},
+  uv:[{p:"04월",v:160},{p:"05월",v:448},{p:"06월",v:1070}],
+  channel:[["네이버검색",38.6,"#D4A017"],["네이버블로그/이웃",27.0,"#B8862F"],["Daum",20.9,"#3E7CB1"],["네이버메인",7.4,"#5FA98C"],["기타",6.0,"#5A6B85"]],
+  age:[["13-18",1,2],["19-24",2,8],["25-29",20,50],["30-34",19,35],["35-39",38,48],["40-44",51,69],["45-49",77,50],["50-54",57,128],["55-59",75,106],["60-",119,37]],
+  cat:[["개인서사",2,199,99.5,"#C8452F"],["답사",31,862,27.8,"#D4A017"],["엔지니어링",27,195,7.2,"#3E7CB1"],["장비/IT",2,60,30.0,"#5FA98C"]],
+  top:[["1,871시간·건축사 시험 도전기",179,"#C8452F"],["익산 함라산 당일 코스",85,"#D4A017"],["전주 팔복예술공장 답사",81,"#D4A017"],["정읍 김명관 고택",71,"#D4A017"],["김제 귀신사·금산사 답사",64,"#D4A017"],["여산 나바위성당·두동교회",54,"#D4A017"],["정읍 피향정·무성서원",51,"#D4A017"],["부여 당일 여행 코스",48,"#D4A017"]]
+};
+var C={gold:"#D4A017",ink:"#E9ECF2",muted:"#8A99B5",line:"#2A3F5F",eng:"#3E7CB1",story:"#C8452F"};
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function svg(w,h,inner){return '<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMidYMid meet">'+inner+'</svg>'}
+function T(x,y,t,o){o=o||{};return '<text x="'+x+'" y="'+y+'" fill="'+(o.fill||C.muted)+'" font-size="'+(o.s||11)+'" text-anchor="'+(o.a||'start')+'" '+(o.w?'font-weight="'+o.w+'"':'')+'>'+esc(t)+'</text>'}
+
+try{
+  document.getElementById('periodLabel').textContent=DATA.period;
+  document.getElementById('updnote').textContent="갱신 방법: 상단 DATA 객체 값만 매월 교체하면 모든 그래프가 자동 반영됩니다. 외부 서버·라이브러리 없이 단일 파일로 동작합니다.";
+  var k=DATA.kpi;
+  document.getElementById('kpis').innerHTML=[
+    ['순방문자수(월)',k.uv.toLocaleString(),k.uvGrowth,''],
+    ['평균 사용시간',k.useTime,k.useDelta,''],
+    ['이웃 증가(월)',k.neighbor,k.neighborDelta,''],
+    ['상위 글 조회 합',k.views,k.viewsNote,'flat']
+  ].map(function(r){return '<div class="kpi"><div class="k">'+r[0]+'</div><div class="v">'+r[1]+'</div><div class="d '+r[3]+'">'+r[2]+'</div></div>'}).join('');
+  document.getElementById('headline').innerHTML='핵심: 3개월 만에 월 UV <b>160&#8594;1,070</b>(+569%)로 급성장. <b>답사기</b>가 조회 총량(64.7%)을 견인하고, <b>개인서사</b>는 편당 평균 <b>99.5</b>회로 효율 최강 — 가장 확장 여지가 큰 축입니다.';
+
+  (function(){var W=400,H=210,pl=42,pr=14,pt=16,pb=28,mx=1100;
+    var xs=DATA.uv.map(function(d,i){return pl+(W-pl-pr)*i/(DATA.uv.length-1)});
+    var ys=DATA.uv.map(function(d){return pt+(H-pt-pb)*(1-d.v/mx)});
+    var g='';[0,550,1100].forEach(function(v){var y=pt+(H-pt-pb)*(1-v/mx);g+='<line x1="'+pl+'" y1="'+y+'" x2="'+(W-pr)+'" y2="'+y+'" stroke="'+C.line+'"/>'+T(pl-6,y+3,v.toLocaleString(),{a:'end',s:10})});
+    var line=xs.map(function(x,i){return (i?'L':'M')+x+' '+ys[i]}).join(' ');
+    var area=line+' L'+xs[xs.length-1]+' '+(H-pb)+' L'+xs[0]+' '+(H-pb)+' Z';
+    var pts='';DATA.uv.forEach(function(d,i){pts+='<circle cx="'+xs[i]+'" cy="'+ys[i]+'" r="4.5" fill="'+C.gold+'"/>'+T(xs[i],ys[i]-9,d.v.toLocaleString(),{a:'middle',s:11,fill:C.ink,w:700})+T(xs[i],H-10,d.p,{a:'middle',s:11})});
+    document.getElementById('uvChart').innerHTML=svg(W,H,g+'<path d="'+area+'" fill="rgba(212,160,23,.15)"/><path d="'+line+'" fill="none" stroke="'+C.gold+'" stroke-width="3"/>'+pts);
+  })();
+
+  (function(){var W=400,H=210,cx=110,cy=105,r=74,sw=30,cir=2*Math.PI*r,off=0,seg='';
+    DATA.channel.forEach(function(c){var frac=c[1]/100,len=frac*cir;
+      seg+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="'+c[2]+'" stroke-width="'+sw+'" stroke-dasharray="'+len+' '+(cir-len)+'" stroke-dashoffset="'+(-off)+'" transform="rotate(-90 '+cx+' '+cy+')"/>';off+=len});
+    var leg='';DATA.channel.forEach(function(c,i){var y=34+i*32;leg+='<rect x="228" y="'+(y-10)+'" width="12" height="12" rx="2" fill="'+c[2]+'"/>'+T(248,y,c[0],{fill:C.ink,s:12})+T(392,y,c[1]+'%',{a:'end',s:12,fill:C.muted,w:700})});
+    document.getElementById('chanChart').innerHTML=svg(W,H,seg+T(cx,cy+5,'검색 65%',{a:'middle',s:13,fill:C.ink,w:700})+leg);
+  })();
+
+  (function(){var rows=DATA.age,W=400,rh=17,gap=4,pt=24,H=pt+rows.length*(rh+gap)+6,cx=W/2,mx=130,half=(W/2-40);
+    var g=T(cx-half,14,'◀ 남',{s:11,fill:C.eng,a:'start'})+T(cx+half,14,'여 ▶',{s:11,fill:C.story,a:'end'});
+    rows.forEach(function(r,i){var y=pt+i*(rh+gap),m=r[1],f=r[2];
+      var mw=half*m/mx,fw=half*f/mx;
+      g+='<rect x="'+(cx-mw)+'" y="'+y+'" width="'+mw+'" height="'+rh+'" fill="'+C.eng+'" rx="2"/>';
+      g+='<rect x="'+cx+'" y="'+y+'" width="'+fw+'" height="'+rh+'" fill="'+C.story+'" rx="2"/>';
+      g+=T(cx,y+rh-4,r[0],{a:'middle',s:9.5,fill:C.ink});
+      if(m>40)g+=T(cx-mw+3,y+rh-4,m,{s:9,fill:'#fff'});
+      if(f>40)g+=T(cx+fw-3,y+rh-4,f,{a:'end',s:9,fill:'#fff'});
+    });
+    document.getElementById('ageChart').innerHTML=svg(W,H,g);
+  })();
+
+  (function(){var d=DATA.cat,W=400,H=210,pl=20,pb=40,pt=14,mx=110,bw=(W-pl-14)/d.length;
+    var g='';[0,50,100].forEach(function(v){var y=pt+(H-pt-pb)*(1-v/mx);g+='<line x1="'+pl+'" y1="'+y+'" x2="'+(W-8)+'" y2="'+y+'" stroke="'+C.line+'"/>'+T(pl-2,y+3,v,{a:'end',s:9})});
+    d.forEach(function(c,i){var x=pl+8+i*bw,h=(H-pt-pb)*(c[3]/mx),y=(H-pb)-h,w=bw-22;
+      g+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+c[4]+'" rx="4"/>';
+      g+=T(x+w/2,y-5,c[3],{a:'middle',s:11,fill:C.ink,w:700});
+      g+=T(x+w/2,H-24,c[0],{a:'middle',s:10.5,fill:C.ink});
+      g+=T(x+w/2,H-11,'('+c[1]+'편)',{a:'middle',s:9.5});
+    });
+    document.getElementById('catChart').innerHTML=svg(W,H,g);
+  })();
+
+  (function(){var d=DATA.top,W=760,rh=26,gap=8,pt=6,pl=8,H=pt+d.length*(rh+gap),mx=190,bx=250,bw=W-bx-46;
+    var g='';d.forEach(function(t,i){var y=pt+i*(rh+gap),w=bw*t[1]/mx;
+      g+=T(pl,y+rh/2+4,(i+1)+'. '+t[0],{s:12,fill:C.ink});
+      g+='<rect x="'+bx+'" y="'+y+'" width="'+w+'" height="'+rh+'" fill="'+t[2]+'" rx="4"/>';
+      g+=T(bx+w+6,y+rh/2+4,t[1],{s:12,fill:C.ink,w:700});
+    });
+    document.getElementById('topChart').innerHTML=svg(W,H,g);
+  })();
+}catch(e){
+  document.getElementById('headline').innerHTML='렌더링 오류: '+e.message;
+}
+</script>
+</body>
+</html>

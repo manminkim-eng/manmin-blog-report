@@ -15,6 +15,15 @@ import pandas as pd
 
 REPO=os.path.dirname(os.path.abspath(__file__))
 
+def head_tags(rel):
+    return ('<link rel="manifest" href="'+rel+'manifest.webmanifest">'
+            '<link rel="apple-touch-icon" href="'+rel+'assets/icon-180.png">'
+            '<meta name="theme-color" content="#0B1626">'
+            '<meta name="mobile-web-app-capable" content="yes">'
+            '<meta name="apple-mobile-web-app-capable" content="yes">'
+            '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">'
+            '<meta name="apple-mobile-web-app-title" content="MANMIN 블로그">')
+
 def render(tpl, **kw):
     for k,v in kw.items():
         tpl=tpl.replace("{"+k+"}", str(v))
@@ -146,7 +155,7 @@ def build_month(src, month, period):
     dashbtn = f'<a href="dashboard.html">📊 성과 대시보드</a>' if dash else ''
     total=sum(len(v) for v in cats.values())
     doc=render(PAGE, title="MANMIN 블로그 분석 · "+period, period=period, total=str(total),
-                    kpis=kpihtml, sections=sec, dashbtn=dashbtn, fav="../assets/favicon.svg")
+                    kpis=kpihtml, sections=sec, dashbtn=dashbtn, fav="../assets/favicon.svg", pwa=head_tags("../"))
     open(os.path.join(mdir,"index.html"),"w",encoding="utf-8").write(doc)
     print(f"[OK] {month}/index.html  ({total}종)")
     return total
@@ -161,7 +170,7 @@ def build_landing():
         cards+=(f'<a class="mcard" href="{m}/index.html"><div class="mv">{y}.{mo}</div>'
                 f'<div class="mk">월간 분석 · 지표 {n}종</div><div class="go">열기 →</div></a>')
     doc=render(LANDING, cards=cards or '<p style="color:#8A99B5">아직 등록된 월간 리포트가 없습니다.</p>',
-                       n=str(len(months)), fav="assets/favicon.svg")
+                       n=str(len(months)), fav="assets/favicon.svg", pwa=head_tags(""))
     open(os.path.join(REPO,"index.html"),"w",encoding="utf-8").write(doc)
     print(f"[OK] landing index.html  ({len(months)}개월)")
 
@@ -201,7 +210,7 @@ STYLE="""
 
 PAGE="""<!DOCTYPE html>
 <html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title}</title><link rel="icon" href="{fav}" type="image/svg+xml">
+<title>{title}</title><link rel="icon" href="{fav}" type="image/svg+xml">{pwa}
 <style>"""+STYLE+"""</style></head><body><div class="wrap">
  <header><div class="brand"><img src="{fav}" alt="MANMIN"><div>
    <h1>MANMIN 블로그 분석 자료 인덱스</h1>
@@ -219,7 +228,7 @@ PAGE="""<!DOCTYPE html>
 
 LANDING="""<!DOCTYPE html>
 <html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MANMIN 블로그 리포트</title><link rel="icon" href="{fav}" type="image/svg+xml">
+<title>MANMIN 블로그 리포트</title><link rel="icon" href="{fav}" type="image/svg+xml">{pwa}
 <style>"""+STYLE+"""
  .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:22px}
  .mcard{display:block;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:14px;padding:18px 20px;text-decoration:none;color:var(--ink);transition:.15s}

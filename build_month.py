@@ -22,7 +22,8 @@ def head_tags(rel):
             '<meta name="mobile-web-app-capable" content="yes">'
             '<meta name="apple-mobile-web-app-capable" content="yes">'
             '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">'
-            '<meta name="apple-mobile-web-app-title" content="MANMIN 블로그">')
+            '<meta name="apple-mobile-web-app-title" content="MANMIN 블로그">'
+            '<script data-goatcounter="https://manmin.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>')
 
 def render(tpl, **kw):
     for k,v in kw.items():
@@ -236,11 +237,16 @@ LANDING="""<!DOCTYPE html>
  .mcard .mv{font-size:26px;font-weight:800;letter-spacing:-.5px}
  .mcard .mk{color:var(--muted);font-size:12px;margin-top:4px} .mcard .go{color:var(--gold);font-size:12px;margin-top:12px}
  .lead{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:15px 18px;margin-top:16px;font-size:13.5px}
+ .chtabs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+ .ct{font-size:13px;font-weight:700;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 16px;text-decoration:none}
+ .ct.active{color:#0B1626;background:var(--gold);border-color:var(--gold)}
+ .ct:hover{border-color:var(--gold)}
 </style></head><body><div class="wrap">
  <header><div class="brand"><img src="{fav}" alt="MANMIN"><div>
    <h1>MANMIN 블로그 성과 리포트</h1>
    <div class="sub">네이버 블로그 manmin72 월간 분석 아카이브 · 건축사 김만민(#20072)</div></div></div>
    <div class="period">총 {n}개월 색인</div></header>
+ <div class="chtabs"><a class="ct active">📝 네이버 블로그</a><a class="ct" href="youtube/index.html">▶ 유튜브</a></div>
  <div class="lead"><b>MANMIN 답사·엔지니어링</b> 블로그의 월간 방문·유입·콘텐츠·이웃 지표를 매월 색인합니다. 아래 월을 선택하면 해당 월 상세 인덱스로 이동합니다.</div>
  <div class="mgrid">{cards}</div>
  <footer>매월 초 갱신 · <a href="https://blog.naver.com/manmin72">blog.naver.com/manmin72</a> ·

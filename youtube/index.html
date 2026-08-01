@@ -49,6 +49,148 @@
    <div class="period">총 2개월 색인</div></header>
  <div class="chtabs"><a class="ct" href="../index.html">📝 네이버 블로그</a><a class="ct active">▶ 유튜브</a></div>
  <div class="lead"><b>MANMIN 답사·엔지니어링</b> 유튜브 채널의 월간 조회수·시청시간·구독자·트래픽·시청자 지표를 매월 색인합니다. 아래 월을 선택하면 해당 월 상세 인덱스로 이동합니다.</div>
+ 
+<style>
+ .trend{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:18px}
+ .trend .th{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+ .trend .th h2{font-size:14.5px;font-weight:700}
+ .trend .th .hint{color:var(--muted);font-size:11.5px}
+ .mtabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+ .mtabs button{flex:none;font-size:12px;font-weight:600;color:var(--muted);background:var(--panel2);
+   border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;white-space:nowrap}
+ .mtabs button.on{color:#0B1626;background:var(--gold);border-color:var(--gold)}
+ .rtabs{display:flex;gap:6px}
+ .rtabs button{font-size:11.5px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);
+   border-radius:7px;padding:5px 10px;cursor:pointer}
+ .rtabs button.on{color:var(--gold);border-color:var(--gold)}
+ .rtabs button:disabled{opacity:.35;cursor:not-allowed}
+ .chartbox{position:relative;margin-top:12px}
+ .chartbox svg{width:100%;height:auto;display:block}
+ .tip{position:absolute;pointer-events:none;background:#0B1626;border:1px solid var(--gold);border-radius:8px;
+   padding:7px 10px;font-size:11.5px;line-height:1.45;white-space:nowrap;opacity:0;transition:opacity .1s;z-index:5}
+ .tip b{color:var(--gold)}
+ .ttab{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:12px}
+ .ttab th{text-align:left;color:var(--muted);font-weight:600;font-size:11px;border-bottom:1px solid var(--line);padding:6px 8px}
+ .ttab td{border-bottom:1px solid rgba(42,63,95,.5);padding:7px 8px}
+ .ttab td.v{font-weight:700}
+ .ttab td.d{font-size:11.5px} .up{color:#5FA98C} .dn{color:#C8452F} .fl{color:var(--muted)}
+ .bar{height:8px;border-radius:3px;background:var(--gold);min-width:2px}
+ .srch{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+ .srch input{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:9px;
+   color:var(--ink);font-size:13px;padding:9px 12px;font-family:inherit}
+ .srch input:focus{outline:none;border-color:var(--gold)}
+ .srch .rs{margin-top:10px;max-height:340px;overflow-y:auto}
+ .srch .row{display:flex;align-items:center;gap:10px;padding:7px 4px;border-bottom:1px solid rgba(42,63,95,.5)}
+ .srch .row .t{flex:1;font-size:12.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .srch .row .n{color:var(--gold);font-weight:700;font-size:12.5px;flex:none}
+ .srch .row .sp{flex:none;display:flex;align-items:flex-end;gap:2px;height:20px}
+ .srch .row .sp i{width:6px;background:var(--gold);opacity:.75;border-radius:1px;display:block}
+ .srch .msg{color:var(--muted);font-size:12px;padding:8px 4px}
+ @media(max-width:640px){.trend{padding:14px 12px}.ttab td.b,.ttab th.b{display:none}}
+</style>
+<div class="trend" id="TR">
+ <div class="th"><div><h2>📈 월별 성장 추이</h2><div class="hint">지표 탭·기간을 바꿔 보세요. 차트에 마우스를 올리면 전월 대비 증감이 나옵니다.</div></div>
+  <div class="rtabs" id="TRr"></div></div>
+ <div class="mtabs" id="TRm"><button data-i="0" class="on">조회수</button><button data-i="1">시청시간(h)</button><button data-i="2">구독자 증감</button><button data-i="3">노출수</button><button data-i="4">노출 클릭률</button></div>
+ <div class="chartbox"><div id="TRsvg"></div><div class="tip" id="TRtip"></div></div>
+ <table class="ttab"><thead><tr><th>월</th><th>값</th><th>전월 대비</th><th class="b">추이</th></tr></thead>
+  <tbody id="TRtb"></tbody></table>
+ <div class="srch">
+  <input id="TRq" type="search" placeholder="🔍 영상 제목 검색 — 키워드를 입력하면 월별 조회수가 나옵니다">
+  <div class="rs" id="TRrs"></div></div>
+</div>
+<script>
+(function(){
+ var D={"metrics":[{"k":"조회수","l":"조회수","f":"int"},{"k":"시청시간","l":"시청시간(h)","f":"f1"},{"k":"구독자","l":"구독자 증감","f":"int"},{"k":"노출수","l":"노출수","f":"int"},{"k":"CTR","l":"노출 클릭률","f":"pct"}],"months":["2026-06","2026-07"],"series":{"조회수":{"2026-06":2932.0,"2026-07":3019.0},"시청시간":{"2026-06":11.0,"2026-07":11.3},"구독자":{"2026-06":5.0,"2026-07":6.0},"노출수":{"2026-06":9696.0,"2026-07":7428.0},"CTR":{"2026-06":4.3,"2026-07":4.6}},"items":[{"t":"비 오는 99칸 고택, 마당의 고요 🏯 #정읍 #한옥","v":{"2026-06":492,"2026-07":30}},{"t":"기러기 내려앉던 그 자리, 완주 비비정 #shorts","v":{"2026-06":446}},{"t":"백제 왕들이 잠든 솔숲길 #Shorts [건축사가 걷는 백제]","v":{"2026-06":398}},{"t":"강경 옥녀봉, 금강이 만든 포구 #Shorts [건축사가 걷는 백제]","v":{"2026-06":393}},{"t":"산성이 99%인데… 해미읍성은 왜 평지에? #shorts","v":{"2026-06":388}},{"t":"안개 낀 백제CC, 40년 우정의 라운딩 ⛳ 친구 넷이 걷는","v":{"2026-06":158}},{"t":"밤하늘 수놓은 불꽃 🎆 익산 원광 열린음악회 피날레","v":{"2026-06":59}},{"t":"오른 사람만 보는 관악산 정상 뷰","v":{"2026-06":45}},{"t":"느긋한 주말 바람과 함께 최북단 녹차밭 휴식","v":{"2026-06":28}},{"t":"[건축사 필수 시청] 2026년 상주감리 대가 산출기 작성","v":{"2026-06":26}},{"t":"건축물 해체공사 감리비 산출 가이드 (실비정액가산방식)","v":{"2026-06":23,"2026-07":29}},{"t":"백제가 마지막으로 싸운 바위","v":{"2026-06":23}},{"t":"천 년을 산 나무 앞에서","v":{"2026-06":21}},{"t":"스프링클러 펌프 용량계산 가이드: NFTC 103 기준","v":{"2026-06":19}},{"t":"낙화암에서 본 백마강 12초","v":{"2026-06":18}},{"t":"김제 벽골제, 백제가 만든 지평선 🌾 #shorts","v":{"2026-07":976}},{"t":"쌀이 떠난 항구, 군산 원도심 근대건축 #Shorts","v":{"2026-07":390}},{"t":"40년 뒤 다시 걷는 국민학교 등굣길 #Shorts","v":{"2026-07":324}},{"t":"부안 고사포 노을, 시인이 노래한 '그 먼 나라'","v":{"2026-07":286}},{"t":"익산에서 온 물이 멈추는 곳, 군산 옥구 #Shorts","v":{"2026-07":207}},{"t":"🏸 [D-91]부송 20주년 시리즈 예고 | D-90 카운트다운 시작 #Shorts #배드민턴","v":{"2026-07":96}},{"t":"노을이 물드는 그린을 걷다 ⛳🌅 #shorts","v":{"2026-07":91}},{"t":"[D-90] 20년의 한마음 — 부송 배드민턴 클럽 20주년 (2007~2026)","v":{"2026-07":66}},{"t":"BTS도 걸었던 그 길, 완주 위봉산성 🏯 #shorts","v":{"2026-07":38}},{"t":"노을이 다 질 때까지, 그대들과 ⛳️ #shorts","v":{"2026-07":33}},{"t":"건축사의 고향, 군산 — 40년 뒤, 다시 걷다 ｜ 원도심·옥구·임피","v":{"2026-07":33}},{"t":"평당 310만 vs 975만? 한국 아파트 건축비가 천차만별인 이유","v":{"2026-07":24}},{"t":"설계 오류 막는 법! 건물 냉난방 부하 계산의 표준, RTS법 완벽 가이드","v":{"2026-07":21}},{"t":"안개 낀 백제CC, 40년 우정의 라운딩 ⛳ | 친구 넷이 걷는","v":{"2026-07":19}},{"t":"[익산 배드민턴] 부송클럽 창립 20주년 기념 영상 🏸","v":{"2026-07":18}},{"t":"부안 개암사 전나무길, 백제 고찰로 가는 길","v":{"2026-07":17}},{"t":"2D 규제를 넘어 3D로 설계하는 최대 용적률 확보 가이드","v":{"2026-07":15}},{"t":"아직도 숨쉬기 운동만 하세요? 뱃살은 못 참지ㅋㅋㅋ","v":{"2026-07":12}},{"t":"[건축사 필수 시청] 2026년 상주감리 대가 산출기 작성법","v":{"2026-07":12}},{"t":"봄— 샤우팅 골프장에서 돌고래 발성 터진 사연","v":{"2026-07":11}},{"t":"옥내소화전 양정 계산 방법 완벽 정리: NFTC 102 기준","v":{"2026-07":11}},{"t":"실무자 필독! 변화된 KDS 41 건축구조기준과 설계하중","v":{"2026-07":10}}]}, MS=D.months, MET=D.metrics, ITM=D.items||[];
+ var mi=0, rng=Math.min(12,MS.length);
+ var elM=document.getElementById('TRm'), elR=document.getElementById('TRr'),
+     elS=document.getElementById('TRsvg'), elT=document.getElementById('TRtb'),
+     elP=document.getElementById('TRtip'), elQ=document.getElementById('TRq'),
+     elL=document.getElementById('TRrs');
+ function fmt(v,f){ if(v==null) return '—';
+  if(f=='pct') return (Math.round(v*10)/10)+'%';
+  if(f=='dur'){var s=Math.round(v);return s>=60?Math.floor(s/60)+'분 '+(s%60)+'초':s+'초';}
+  if(f=='f1') return (Math.round(v*10)/10).toLocaleString();
+  if(f=='f2') return (Math.round(v*100)/100).toLocaleString();
+  return Math.round(v).toLocaleString(); }
+ function lbl(m){ return m.slice(2).replace('-','.'); }
+ [3,6,12].forEach(function(n,k){ var b=document.createElement('button');
+  var prev=[0,3,6][k];
+  b.textContent=n+'개월'; b.disabled=(MS.length<=prev);
+  b.title=b.disabled?('데이터가 '+MS.length+'개월분이라 아직 사용할 수 없습니다'):'';
+  b.onclick=function(){ if(b.disabled) return; rng=n; draw(); }; b.dataset.n=n; elR.appendChild(b); });
+ elM.querySelectorAll('button').forEach(function(b){
+  b.onclick=function(){ mi=+b.dataset.i;
+   elM.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+   b.classList.add('on'); draw(); }; });
+ function draw(){
+  elR.querySelectorAll('button').forEach(function(b){
+   b.classList.toggle('on', +b.dataset.n===rng); });
+  var M=MET[mi], ms=MS.slice(-rng), sr=D.series[M.k]||{};
+  var vs=ms.map(function(m){ return sr[m]==null?null:sr[m]; });
+  var mx=Math.max.apply(null,vs.filter(function(v){return v!=null;}).concat([1]));
+  var W=760,H=230,PL=54,PR=14,PT=16,PB=30, iw=W-PL-PR, ih=H-PT-PB;
+  var n=ms.length, bw=Math.min(46, iw/Math.max(n,1)*0.5);
+  function X(i){ return PL + iw*(n===1?0.5:(i/(n-1))); }
+  function Y(v){ return PT + ih - (v/mx)*ih; }
+  var g='';
+  for(var t=0;t<=4;t++){ var yy=PT+ih*t/4, gv=mx*(1-t/4);
+   g+='<line x1="'+PL+'" y1="'+yy+'" x2="'+(W-PR)+'" y2="'+yy+'" stroke="#2A3F5F" stroke-width="1" opacity="'+(t===4?1:.45)+'"/>';
+   g+='<text x="'+(PL-8)+'" y="'+(yy+4)+'" fill="#8A99B5" font-size="10" text-anchor="end">'+fmt(gv,M.f)+'</text>'; }
+  ms.forEach(function(m,i){ var v=vs[i]; if(v==null) return;
+   g+='<rect x="'+(X(i)-bw/2)+'" y="'+Y(v)+'" width="'+bw+'" height="'+(PT+ih-Y(v))+'" fill="#D4A017" opacity=".22" rx="3"/>'; });
+  var pts=[]; ms.forEach(function(m,i){ if(vs[i]!=null) pts.push(X(i)+','+Y(vs[i])); });
+  if(pts.length>1) g+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="#D4A017" stroke-width="2.2" stroke-linejoin="round"/>';
+  ms.forEach(function(m,i){ var v=vs[i]; if(v==null) return;
+   g+='<circle cx="'+X(i)+'" cy="'+Y(v)+'" r="4.2" fill="#0B1626" stroke="#D4A017" stroke-width="2.2"/>';
+   g+='<text x="'+X(i)+'" y="'+(H-10)+'" fill="#8A99B5" font-size="10.5" text-anchor="middle">'+lbl(m)+'</text>'; });
+  ms.forEach(function(m,i){
+   g+='<rect class="hz" data-i="'+i+'" x="'+(X(i)-iw/Math.max(n,1)/2)+'" y="'+PT+'" width="'+(iw/Math.max(n,1))+'" height="'+ih+'" fill="transparent"/>'; });
+  elS.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid meet">'+g+'</svg>';
+  var box=elS.getBoundingClientRect();
+  elS.querySelectorAll('.hz').forEach(function(r){
+   r.addEventListener('mouseenter', function(){ show(+r.dataset.i, ms, vs, M); });
+   r.addEventListener('mousemove', function(e){ move(e); });
+   r.addEventListener('mouseleave', function(){ elP.style.opacity=0; }); });
+  var tb='';
+  for(var i=ms.length-1;i>=0;i--){ var v=vs[i], p=i>0?vs[i-1]:null, d='—', cl='fl';
+   if(v!=null&&p!=null&&p!==0){ var r2=(v-p)/p*100;
+    d=(r2>=0?'+':'')+(Math.round(r2*10)/10)+'%'; cl=r2>0?'up':(r2<0?'dn':'fl'); }
+   tb+='<tr><td>'+ms[i].replace('-','.')+'</td><td class="v">'+fmt(v,M.f)+'</td>'
+     +'<td class="d '+cl+'">'+d+'</td><td class="b"><div class="bar" style="width:'
+     +(v==null?0:Math.max(2,v/mx*100))+'%"></div></td></tr>'; }
+  elT.innerHTML=tb;
+ }
+ function show(i,ms,vs,M){ var v=vs[i], p=i>0?vs[i-1]:null, ex='';
+  if(v!=null&&p!=null&&p!==0){ var r2=(v-p)/p*100;
+   ex='<br>전월 대비 <b>'+(r2>=0?'+':'')+(Math.round(r2*10)/10)+'%</b> ('+(v-p>=0?'+':'')+fmt(v-p,M.f)+')'; }
+  elP.innerHTML=ms[i].replace('-','.')+' · '+M.l+'<br><b>'+fmt(v,M.f)+'</b>'+ex;
+  elP.style.opacity=1; }
+ function move(e){ var b=elS.getBoundingClientRect();
+  var x=e.clientX-b.left, y=e.clientY-b.top;
+  elP.style.left=Math.min(Math.max(0,x+14), b.width-elP.offsetWidth-4)+'px';
+  elP.style.top=Math.max(0,y-46)+'px'; }
+ function search(){ var q=(elQ.value||'').trim().toLowerCase();
+  if(!q){ elL.innerHTML='<div class="msg">키워드를 입력하면 제목이 일치하는 영상의 월별 수치를 보여줍니다. (총 '+ITM.length+'건 색인)</div>'; return; }
+  var hit=ITM.filter(function(it){ return it.t.toLowerCase().indexOf(q)>=0; });
+  if(!hit.length){ elL.innerHTML='<div class="msg">일치하는 항목이 없습니다.</div>'; return; }
+  hit.forEach(function(it){ it._s=Object.keys(it.v).reduce(function(a,k){ return a+(it.v[k]||0); },0); });
+  hit.sort(function(a,b){ return b._s-a._s; });
+  var top=Math.max.apply(null,hit.map(function(it){ return it._s; }).concat([1]));
+  elL.innerHTML=hit.slice(0,40).map(function(it){
+   var sp=MS.map(function(m){ var v=it.v[m]||0;
+    return '<i style="height:'+Math.max(2,Math.round(v/top*20))+'px" title="'+m+' '+v.toLocaleString()+'"></i>'; }).join('');
+   var det=MS.filter(function(m){ return it.v[m]; }).map(function(m){
+    return lbl(m)+' '+it.v[m].toLocaleString(); }).join(' · ');
+   return '<div class="row"><div class="sp">'+sp+'</div><div class="t" title="'
+    +it.t.replace(/"/g,'&quot;')+'">'+it.t+'<br><span style="color:#8A99B5;font-size:11px">'+det+'</span></div>'
+    +'<div class="n">'+it._s.toLocaleString()+'</div></div>'; }).join('')
+   + (hit.length>40?'<div class="msg">상위 40건만 표시 (총 '+hit.length+'건)</div>':'');
+ }
+ elQ.addEventListener('input', search);
+ draw(); search();
+})();
+</script>
  <div class="mgrid"><a class="mcard" href="2026-07/index.html"><div class="mv">2026.07</div><div class="mk">월간 분석 · 카테고리 7종</div><div class="go">열기 →</div></a><a class="mcard" href="2026-06/index.html"><div class="mv">2026.06</div><div class="mk">월간 분석 · 카테고리 7종</div><div class="go">열기 →</div></a></div>
  <footer>매월 초 갱신 · <a href="https://www.youtube.com/@김만민-x8p">youtube.com/@김만민</a> ·
   <a href="https://manminkim-eng.github.io/KIMMANMIN/">엔지니어링 플랫폼</a></footer>

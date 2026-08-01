@@ -9,11 +9,13 @@ MANMIN 블로그 리포트 · 월간 인덱스 자동 생성기
   3) <repo>/index.html (랜딩) 을 월 폴더 스캔해 자동 갱신
 외부 라이브러리: pandas, openpyxl
 """
-import argparse, glob, os, shutil, html, warnings, re
+import argparse, glob, os, sys, shutil, html, warnings, re
 warnings.filterwarnings("ignore")
 import pandas as pd
 
 REPO=os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, REPO)
+import trendkit
 
 def head_tags(rel):
     return ('<link rel="manifest" href="'+rel+'manifest.webmanifest">'
@@ -164,6 +166,56 @@ def build_month(src, month, period):
     print(f"[OK] {month}/index.html  ({total}종)")
     return total
 
+
+# ---------- 월별 성장 추이 데이터 ----------
+BLOG_METRICS=[
+ {"k":"조회수","l":"조회수","f":"int"},
+ {"k":"순방문자수","l":"순방문자","f":"int"},
+ {"k":"방문횟수","l":"방문횟수","f":"int"},
+ {"k":"재방문율","l":"재방문율","f":"pct"},
+ {"k":"평균방문횟수","l":"평균 방문횟수","f":"f2"},
+ {"k":"이웃증감수","l":"이웃 증가","f":"int"},
+ {"k":"평균사용시간","l":"평균 사용시간","f":"dur"},
+]
+
+def collect_trend():
+    """최신 월 폴더의 시계열 xlsx(24개월분)에서 지표별 월간 추이를,
+       모든 월 폴더의 '조회수 순위'에서 게시글별 월간 조회수를 모은다."""
+    months=sorted([d for d in os.listdir(REPO) if re.match(r"^\d{4}-\d{2}$",d)])
+    if not months: return None
+    want={m["k"] for m in BLOG_METRICS}
+    series={k:{} for k in want}
+    for f in sorted(glob.glob(os.path.join(glob.escape(os.path.join(REPO,months[-1],"data")),"*.xlsx"))):
+        try: df=read(f); name=str(meta(df).get("데이터명","")).strip()
+        except Exception: continue
+        if name not in want: continue
+        d=data_region(df)
+        for _,r in d.iterrows():
+            per=str(r.iloc[0]).strip()
+            mm=re.match(r"^(\d{4}-\d{2})",per)
+            if not mm: continue
+            raw=r.iloc[2] if len(r)>2 else None
+            v=trendkit.dur_to_sec(raw) if name=="평균사용시간" else trendkit.to_num(raw)
+            if v is not None: series[name][mm.group(1)]=v
+    allm=sorted({m for k in series for m in series[k]})
+    # 전 지표가 0인 선행 월 제거
+    while allm and all((series[k].get(allm[0]) or 0)==0 for k in series): allm.pop(0)
+    for k in series: series[k]={m:v for m,v in series[k].items() if m in allm}
+
+    items={}
+    for mo in months:
+        for f in glob.glob(os.path.join(glob.escape(os.path.join(REPO,mo,"data")),"*.xlsx")):
+            try: df=read(f)
+            except Exception: continue
+            if str(meta(df).get("데이터명","")).strip()!="조회수 순위": continue
+            for _,r in data_region(df).iterrows():
+                t=str(r.iloc[1]).strip(); v=trendkit.to_num(r.iloc[2] if len(r)>2 else None)
+                if not t or t=="nan" or v is None: continue
+                items.setdefault(t,{})[mo]=int(v)
+    if not allm: return None
+    return {"metrics":BLOG_METRICS,"months":allm,"series":series,
+            "items":[{"t":t,"v":v} for t,v in items.items()]}
+
 def build_landing():
     months=sorted([d for d in os.listdir(REPO) if re.match(r"^\d{4}-\d{2}$",d)], reverse=True)
     cards=""
@@ -173,8 +225,12 @@ def build_landing():
         y,mo=m.split("-")
         cards+=(f'<a class="mcard" href="{m}/index.html"><div class="mv">{y}.{mo}</div>'
                 f'<div class="mk">월간 분석 · 지표 {n}종</div><div class="go">열기 →</div></a>')
+    tr=collect_trend()
+    trend=trendkit.panel_html(tr, "월별 성장 추이",
+            "지표 탭·기간을 바꿔 보세요. 차트에 마우스를 올리면 전월 대비 증감이 나옵니다.",
+            "게시글") if tr else ""
     doc=render(LANDING, cards=cards or '<p style="color:#8A99B5">아직 등록된 월간 리포트가 없습니다.</p>',
-                       n=str(len(months)), fav="assets/favicon.svg", pwa=head_tags(""))
+                       n=str(len(months)), fav="assets/favicon.svg", pwa=head_tags(""), trend=trend)
     open(os.path.join(REPO,"index.html"),"w",encoding="utf-8").write(doc)
     print(f"[OK] landing index.html  ({len(months)}개월)")
 
@@ -251,6 +307,7 @@ LANDING="""<!DOCTYPE html>
    <div class="period">총 {n}개월 색인</div></header>
  <div class="chtabs"><a class="ct active">📝 네이버 블로그</a><a class="ct" href="youtube/index.html">▶ 유튜브</a></div>
  <div class="lead"><b>MANMIN 답사·엔지니어링</b> 블로그의 월간 방문·유입·콘텐츠·이웃 지표를 매월 색인합니다. 아래 월을 선택하면 해당 월 상세 인덱스로 이동합니다.</div>
+ {trend}
  <div class="mgrid">{cards}</div>
  <footer>매월 초 갱신 · <a href="https://blog.naver.com/manmin72">blog.naver.com/manmin72</a> ·
   <a href="https://manminkim-eng.github.io/KIMMANMIN/">엔지니어링 플랫폼</a></footer>

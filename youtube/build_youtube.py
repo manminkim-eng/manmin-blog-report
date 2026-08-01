@@ -13,11 +13,13 @@ CSV 구조: YouTube 스튜디오 > 분석 > 고급 모드 > (탭 선택) > 내�
   각 탭(개요/콘텐츠/트래픽소스/지역/연령및성별/기기/구독상태)을 같은 이름의
   하위 폴더에 넣어 두면 카테고리로 자동 인식.
 """
-import argparse, glob, os, shutil, html, warnings, re
+import argparse, glob, os, sys, shutil, html, warnings, re
 warnings.filterwarnings("ignore")
 import pandas as pd
 
 REPO = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(REPO))
+import trendkit
 
 CATS = {
     "개요":       ("① 채널 개요",     "overview"),
@@ -231,6 +233,53 @@ def build_month(src, month, period):
     return total
 
 
+
+# ---------- 월별 성장 추이 데이터 ----------
+YT_METRICS=[
+ {"k":"조회수","l":"조회수","f":"int"},
+ {"k":"시청시간","l":"시청시간(h)","f":"f1"},
+ {"k":"구독자","l":"구독자 증감","f":"int"},
+ {"k":"노출수","l":"노출수","f":"int"},
+ {"k":"CTR","l":"노출 클릭률","f":"pct"},
+]
+_YT_COLS=[("조회수",0),("시청시간",1),("구독자",2),("노출수",3),("CTR",4)]
+
+def _read_csv(path):
+    for enc in ("utf-8-sig","cp949","utf-8"):
+        try: return pd.read_csv(path, encoding=enc)
+        except Exception: continue
+    return None
+
+def collect_trend():
+    """월별 개요/Totals.csv 에서 KPI 추이를, 콘텐츠/Table data.csv 에서 영상별 월간 조회수를 모은다."""
+    months=sorted([d for d in os.listdir(REPO) if re.match(r"^\d{4}-\d{2}$",d)])
+    series={k:{} for k,_ in _YT_COLS}
+    items={}
+    for mo in months:
+        tot=os.path.join(REPO,mo,"data","개요","Totals.csv")
+        if os.path.exists(tot):
+            df=_read_csv(tot)
+            if df is not None and len(df):
+                r=df.iloc[0]
+                for key,ci in _YT_COLS:
+                    if ci < len(r):
+                        v=trendkit.to_num(r.iloc[ci])
+                        if v is not None: series[key][mo]=v
+        con=os.path.join(REPO,mo,"data","콘텐츠","Table data.csv")
+        if os.path.exists(con):
+            df=_read_csv(con)
+            if df is not None:
+                for _,r in df.iterrows():
+                    t=str(r.iloc[0]).strip()
+                    if not t or t in ("nan","합계","Total"): continue
+                    v=trendkit.to_num(r.iloc[1] if len(r)>1 else None)
+                    if v is None: continue
+                    items.setdefault(t,{})[mo]=int(v)
+    allm=sorted({m for k in series for m in series[k]})
+    if not allm: return None
+    return {"metrics":YT_METRICS,"months":allm,"series":series,
+            "items":[{"t":t,"v":v} for t,v in items.items()]}
+
 def build_landing():
     months = sorted([d for d in os.listdir(REPO) if re.match(r"^\d{4}-\d{2}$", d)], reverse=True)
     cards = ""
@@ -240,8 +289,12 @@ def build_landing():
         y, mo = m.split("-")
         cards += (f'<a class="mcard" href="{m}/index.html"><div class="mv">{y}.{mo}</div>'
                   f'<div class="mk">월간 분석 · 카테고리 {n}종</div><div class="go">열기 →</div></a>')
+    tr = collect_trend()
+    trend = trendkit.panel_html(tr, "월별 성장 추이",
+             "지표 탭·기간을 바꿔 보세요. 차트에 마우스를 올리면 전월 대비 증감이 나옵니다.",
+             "영상") if tr else ""
     doc = render(LANDING, cards=cards or '<p style="color:#8A99B5">아직 등록된 월간 리포트가 없습니다.</p>',
-                 n=str(len(months)), fav="assets/favicon.svg", pwa=head_tags(""))
+                 n=str(len(months)), fav="assets/favicon.svg", pwa=head_tags(""), trend=trend)
     open(os.path.join(REPO, "index.html"), "w", encoding="utf-8").write(doc)
     print(f"[OK] landing index.html  ({len(months)}개월)")
 
@@ -318,6 +371,7 @@ LANDING = """<!DOCTYPE html>
    <div class="period">총 {n}개월 색인</div></header>
  <div class="chtabs"><a class="ct" href="../index.html">📝 네이버 블로그</a><a class="ct active">▶ 유튜브</a></div>
  <div class="lead"><b>MANMIN 답사·엔지니어링</b> 유튜브 채널의 월간 조회수·시청시간·구독자·트래픽·시청자 지표를 매월 색인합니다. 아래 월을 선택하면 해당 월 상세 인덱스로 이동합니다.</div>
+ {trend}
  <div class="mgrid">{cards}</div>
  <footer>매월 초 갱신 · <a href="https://www.youtube.com/@김만민-x8p">youtube.com/@김만민</a> ·
   <a href="https://manminkim-eng.github.io/KIMMANMIN/">엔지니어링 플랫폼</a></footer>

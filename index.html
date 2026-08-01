@@ -50,6 +50,148 @@
    <div class="period">총 2개월 색인</div></header>
  <div class="chtabs"><a class="ct active">📝 네이버 블로그</a><a class="ct" href="youtube/index.html">▶ 유튜브</a></div>
  <div class="lead"><b>MANMIN 답사·엔지니어링</b> 블로그의 월간 방문·유입·콘텐츠·이웃 지표를 매월 색인합니다. 아래 월을 선택하면 해당 월 상세 인덱스로 이동합니다.</div>
+ 
+<style>
+ .trend{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:18px}
+ .trend .th{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+ .trend .th h2{font-size:14.5px;font-weight:700}
+ .trend .th .hint{color:var(--muted);font-size:11.5px}
+ .mtabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+ .mtabs button{flex:none;font-size:12px;font-weight:600;color:var(--muted);background:var(--panel2);
+   border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;white-space:nowrap}
+ .mtabs button.on{color:#0B1626;background:var(--gold);border-color:var(--gold)}
+ .rtabs{display:flex;gap:6px}
+ .rtabs button{font-size:11.5px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);
+   border-radius:7px;padding:5px 10px;cursor:pointer}
+ .rtabs button.on{color:var(--gold);border-color:var(--gold)}
+ .rtabs button:disabled{opacity:.35;cursor:not-allowed}
+ .chartbox{position:relative;margin-top:12px}
+ .chartbox svg{width:100%;height:auto;display:block}
+ .tip{position:absolute;pointer-events:none;background:#0B1626;border:1px solid var(--gold);border-radius:8px;
+   padding:7px 10px;font-size:11.5px;line-height:1.45;white-space:nowrap;opacity:0;transition:opacity .1s;z-index:5}
+ .tip b{color:var(--gold)}
+ .ttab{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:12px}
+ .ttab th{text-align:left;color:var(--muted);font-weight:600;font-size:11px;border-bottom:1px solid var(--line);padding:6px 8px}
+ .ttab td{border-bottom:1px solid rgba(42,63,95,.5);padding:7px 8px}
+ .ttab td.v{font-weight:700}
+ .ttab td.d{font-size:11.5px} .up{color:#5FA98C} .dn{color:#C8452F} .fl{color:var(--muted)}
+ .bar{height:8px;border-radius:3px;background:var(--gold);min-width:2px}
+ .srch{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+ .srch input{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:9px;
+   color:var(--ink);font-size:13px;padding:9px 12px;font-family:inherit}
+ .srch input:focus{outline:none;border-color:var(--gold)}
+ .srch .rs{margin-top:10px;max-height:340px;overflow-y:auto}
+ .srch .row{display:flex;align-items:center;gap:10px;padding:7px 4px;border-bottom:1px solid rgba(42,63,95,.5)}
+ .srch .row .t{flex:1;font-size:12.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .srch .row .n{color:var(--gold);font-weight:700;font-size:12.5px;flex:none}
+ .srch .row .sp{flex:none;display:flex;align-items:flex-end;gap:2px;height:20px}
+ .srch .row .sp i{width:6px;background:var(--gold);opacity:.75;border-radius:1px;display:block}
+ .srch .msg{color:var(--muted);font-size:12px;padding:8px 4px}
+ @media(max-width:640px){.trend{padding:14px 12px}.ttab td.b,.ttab th.b{display:none}}
+</style>
+<div class="trend" id="TR">
+ <div class="th"><div><h2>📈 월별 성장 추이</h2><div class="hint">지표 탭·기간을 바꿔 보세요. 차트에 마우스를 올리면 전월 대비 증감이 나옵니다.</div></div>
+  <div class="rtabs" id="TRr"></div></div>
+ <div class="mtabs" id="TRm"><button data-i="0" class="on">조회수</button><button data-i="1">순방문자</button><button data-i="2">방문횟수</button><button data-i="3">재방문율</button><button data-i="4">평균 방문횟수</button><button data-i="5">이웃 증가</button><button data-i="6">평균 사용시간</button></div>
+ <div class="chartbox"><div id="TRsvg"></div><div class="tip" id="TRtip"></div></div>
+ <table class="ttab"><thead><tr><th>월</th><th>값</th><th>전월 대비</th><th class="b">추이</th></tr></thead>
+  <tbody id="TRtb"></tbody></table>
+ <div class="srch">
+  <input id="TRq" type="search" placeholder="🔍 게시글 제목 검색 — 키워드를 입력하면 월별 조회수가 나옵니다">
+  <div class="rs" id="TRrs"></div></div>
+</div>
+<script>
+(function(){
+ var D={"metrics":[{"k":"조회수","l":"조회수","f":"int"},{"k":"순방문자수","l":"순방문자","f":"int"},{"k":"방문횟수","l":"방문횟수","f":"int"},{"k":"재방문율","l":"재방문율","f":"pct"},{"k":"평균방문횟수","l":"평균 방문횟수","f":"f2"},{"k":"이웃증감수","l":"이웃 증가","f":"int"},{"k":"평균사용시간","l":"평균 사용시간","f":"dur"}],"months":["2026-04","2026-05","2026-06","2026-07"],"series":{"조회수":{"2026-07":3241.0,"2026-06":1521.0,"2026-05":566.0,"2026-04":403.0},"이웃증감수":{"2026-07":194.0,"2026-06":37.0,"2026-05":1.0,"2026-04":8.0},"재방문율":{"2026-07":49.0,"2026-06":10.0,"2026-05":7.0,"2026-04":0.0},"순방문자수":{"2026-07":2160.0,"2026-06":1070.0,"2026-05":448.0,"2026-04":160.0},"방문횟수":{"2026-07":2732.0,"2026-06":1244.0,"2026-05":496.0,"2026-04":271.0},"평균사용시간":{"2026-07":17.0,"2026-06":1.0,"2026-05":164.0,"2026-04":85.0},"평균방문횟수":{"2026-07":1.26,"2026-06":1.16,"2026-05":1.11,"2026-04":1.69}},"items":[{"t":"1,871시간, 4년, 두 번의 98.57% ｜ 데이터로 다시 본 나의 건축사 시험 도전기","v":{"2026-06":179,"2026-07":131}},{"t":"익산 함라산 당일 코스 ｜입점리 고분·숭림사, 칡 캐다 깨운 1,500년","v":{"2026-06":85,"2026-07":39}},{"t":"전주 팔복예술공장 답사 ｜ 25년 버려진 카세트테이프 공장이 예술이 되기까지","v":{"2026-06":81,"2026-07":88}},{"t":"정읍 김명관 고택(구 김동수가옥) ｜ 아흔아홉 칸, 지네와 닭의 풍수 설화가 깃든 종택","v":{"2026-06":71,"2026-07":63}},{"t":"미륵의 땅에서, 미륵을 꿈꾼 왕이 무너지다 ｜ 김제 귀신사·금산사 당일 답사","v":{"2026-06":64,"2026-07":48}},{"t":"여산 백지사터·나바위성당·두동교회 ｜ 익산 한나절, 한국 신앙 200년을 걷다","v":{"2026-06":54,"2026-07":103}},{"t":"정읍 피향정·무성서원 답사 ｜ 호남제일정과 유네스코 서원, 정읍 유교문화 1번지를 걷다","v":{"2026-06":51,"2026-07":48}},{"t":"부여 당일 여행 코스 추천 ㅣ 부소산성·낙화암·고란사·백마강 황포돛배 (2026.05.05 어린이날)","v":{"2026-06":48,"2026-07":51}},{"t":"논산 당일 답사 ① 강경에서 관촉사까지 ｜ 한국 침례교가 시작된 'ㄱ자 교회', 그리고 18m 은진미륵","v":{"2026-06":43,"2026-07":12}},{"t":"완주 삼례 비비정·호산서원, 만경강철교 예술열차까지 ｜ 수탈의 강이 예술이 되기까지","v":{"2026-06":43,"2026-07":41}},{"t":"건축사가 직접 구축한 홈서버, 시놀로지 DS225+ NAS 처음부터 끝까지","v":{"2026-06":36,"2026-07":50}},{"t":"익산 향교 4곳 + 함라마을 돌담길 당일 답사 ｜ 금마·여산·용안·함열, 하루에 다 걷는 익산 유교건축","v":{"2026-06":36,"2026-07":39}},{"t":"익산 보석박물관·주얼펠리스 답사 ㅣ 함벽정에서 데이지까지, ‘보석의 도시’ 익산의 6월 오후","v":{"2026-06":34,"2026-07":111}},{"t":"열관류율 계산, 단열재 두께 선택부터 법규 판정까지 한 번에 | 건축사 실무 가이드","v":{"2026-06":31,"2026-07":16}},{"t":"익산 쌍릉 ｜ 서동요의 그 왕, 무왕이 잠든 곳 ｜ 백제역사유적지구 완주 부록 편","v":{"2026-06":27,"2026-07":49}},{"t":"토목 옹벽 종류별 설계기준, H/B 안정조건 완벽 정리 | 토목 실무 가이드","v":{"2026-06":25,"2026-07":13}},{"t":"시놀로지 NAS 운영편 ㅣ 원격접속·백업속도·동기화 완전정리","v":{"2026-06":24,"2026-07":26}},{"t":"논산 당일 답사 ② 탑정호에서 명재고택까지 ｜ 계백의 황산벌, 유네스코 돈암서원, 그리고 장독대의 과학","v":{"2026-06":22,"2026-07":7}},{"t":"익산 당일 답사 코스 추천 ㅣ 미륵사지·국립익산박물관·왕궁리 유적 (2026.05.10)","v":{"2026-06":20,"2026-07":8}},{"t":"27년 만에 다시 선 전라선 전주천 철교 ｜(주)충일건설 입사 후 첫 토목 현장을 걷다","v":{"2026-06":20,"2026-07":8}},{"t":"관악산 연주대 등산 | 2026 대한건축사 상반기 전국등산대회 참가 후기 |전북 배드민턴 동호회 옵저버의 하루","v":{"2026-06":20,"2026-07":37}},{"t":"완주 대야수목원 오후 산책 ㅣ 봄날의 신록·영산홍·전망대까지 (2026.04.26)","v":{"2026-06":19,"2026-07":16}},{"t":"부안 내소사·적벽강 (2부) | 천 년 나무 앞에서, 30년 전 나를 만나다","v":{"2026-06":19,"2026-07":86}},{"t":"부여왕릉원과 부여 나성 야경 답사 ｜ 백제역사유적지구 8곳 완주의 마침표","v":{"2026-06":18,"2026-07":27}},{"t":"서산 당일 여행 코스 추천 ㅣ 해미읍성·한우목장길·마애삼존불·수덕사 한 바퀴 (2026.05.09)","v":{"2026-06":16,"2026-07":17}},{"t":"공주 공산성 당일 답사 ｜ 웅진백제 64년의 격동사가 새겨진 성벽 한 바퀴","v":{"2026-06":16,"2026-07":17}},{"t":"부처님오신날 사비도성을 거닐다 ｜ 부여 백제문화단지와 궁남지 당일 답사기","v":{"2026-06":14,"2026-07":9}},{"t":"공공건축 설계 대가 계산, 직선보간법으로 5분 만에 끝내기 | 건축사 실무 가이드","v":{"2026-06":13,"2026-07":24}},{"t":"부설주차장 설치기준, 용도별 주차대수 계산 완벽 정리 | 건축사 실무 가이드","v":{"2026-06":13,"2026-07":12}},{"t":"비상발전기 용량 산정, GP법 한 번에 끝냅니다 | KDS·NFTC 실무 가이드","v":{"2026-06":13,"2026-07":17}},{"t":"공주 무령왕릉과 왕릉원 당일 답사 ｜ 1971년 7월 5일, 한국 고고학 최대의 발견을 만나다","v":{"2026-06":12,"2026-07":9}},{"t":"부여 정림사지 당일 답사 ｜ 백제 가람의 원형, 그리고 한 석탑이 견딘 멸망의 글자들","v":{"2026-06":11,"2026-07":2}},{"t":"해체감리비 계산, 실비정액가산방식 4대 구성요소 완벽 정리 | 건축사 실무 가이드","v":{"2026-06":10,"2026-07":8}},{"t":"2026년 상주감리 대가 산출, 최신 노임단가로 완벽 계산하는 법 | 건축사 실무 가이드","v":{"2026-06":10,"2026-07":7}},{"t":"제연설비 설계, 거실제연과 가압제연 완벽 정리 | NFTC 501·501A 실무 가이드","v":{"2026-06":10,"2026-07":10}},{"t":"31년 현장 · 건축사 + CVS 국제공인 VE전문가가 수행한건설사업관리(CM) · 가치공학(VE) 포트폴리오","v":{"2026-06":10,"2026-07":9}},{"t":"위생배관 관경 산정, 헌터 곡선 없이 하면 이렇게 틀립니다 | 기계설비 기술기준 완벽 가이드","v":{"2026-06":9,"2026-07":7}},{"t":"옥내소화전 펌프 전양정 계산, 이 공식 하나면 끝납니다 | NFTC 102 실무 가이드","v":{"2026-06":8,"2026-07":10}},{"t":"부안 개암사·우금산성 (1부) | 백제가 스러진 자리에서 청자의 빛까지","v":{"2026-06":8,"2026-07":39}},{"t":"옥외소화전 펌프 용량 계산, 옥내소화전과 이렇게 다릅니다 | NFPC 109 실무 가이드","v":{"2026-06":6,"2026-07":9}},{"t":"기계환기설비 법정 환기량 산정, 용도 구분 틀리면 준공 검사 반려됩니다 | 기계설비 완벽 가이드","v":{"2026-06":6,"2026-07":2}},{"t":"건축 설계하중 산정, 하중조합 틀리면 구조계산 전부 다시 합니다 | 건축구조 완벽 가이드","v":{"2026-06":6,"2026-07":8}},{"t":"스프링클러 펌프 용량 계산, 기준개수만 알면 나머지는 공식입니다 | NFTC 103 실무 가이드","v":{"2026-06":5,"2026-07":3}},{"t":"간이스프링클러 압력 계산, 공식 2개면 됩니다 | NFSC 103A 실무 가이드","v":{"2026-06":5,"2026-07":2}},{"t":"소방시설 설치기준, 2024~2025 개정까지 한 번에 정리 | NFTC Ver 3.0 실무 가이드","v":{"2026-06":5,"2026-07":2}},{"t":"31년 경력 건축사 김만민 포트폴리오 공개","v":{"2026-06":5,"2026-07":2}},{"t":"단지내 우수·오수 배관 관경 산정, 합리식 없이 하면 이렇게 틀립니다 | 토목 완벽 가이드","v":{"2026-06":4,"2026-07":8}},{"t":"냉난방 부하계산 완벽 정리 — 기계설비 기술기준·에너지절약설계기준 실무 가이드 | 건축사 실무","v":{"2026-06":4,"2026-07":8}},{"t":"30년 건축사가 직접 코딩한 엔지니어링 계산기 30여 종","v":{"2026-06":4,"2026-07":5}},{"t":"옥내소화전 + 간이스프링클러 겸용 펌프 계산 완벽 정리 | NFTC 102+103A 실무 가이드","v":{"2026-06":3,"2026-07":1}},{"t":"건물 옥상 우수관경 산정, 이렇게 틀립니다 | 수리학 + 신뢰성 분석 완벽 가이드","v":{"2026-06":3,"2026-07":4}},{"t":"공조 덕트 규격 산정, 등마찰손실법 없이 설계하면 이렇게 망합니다 | 기계설비 완벽 가이드","v":{"2026-06":3,"2026-07":3}},{"t":"적정 공사기간 산정, 비작업일수 계산부터 공기심의까지 완벽 정리 | 건축사 실무 가이드","v":{"2026-06":2,"2026-07":11}},{"t":"냉온수 배관 관경 산정, CAPEX·OPEX 모르면 20년치 손해 봅니다 | 기계설비 완벽 가이드","v":{"2026-06":2,"2026-07":3}},{"t":"설비펌프 전양정·동력 산정, 여유율 잘못 잡으면 EPI 감점 폭탄 | 기계설비 완벽 가이드","v":{"2026-06":2,"2026-07":4}},{"t":"민프로 골프 7년 대장정[2019 ~ 2026]","v":{"2026-06":2,"2026-07":1}},{"t":"EPI 점수 민간 65점·공공 74점 달성 전략, 건축사가 직접 해부합니다 | 건축사 실무 가이드","v":{"2026-06":1}},{"t":"건축물 용도변경, 허가인지 신고인지 헷갈린다면 이 글 하나로 끝 | 건축사 실무 가이드","v":{"2026-06":1}},{"t":"내진설계 의무 대상 판별, 2층? 200㎡? 목구조는 다르다 | 건축사 실무 가이드","v":{"2026-06":1,"2026-07":1}},{"t":"일조사선·일영시간 계산, 2023년 개정 기준으로 최대 용적률 확보하는 법 | 건축사 실무 가이드","v":{"2026-06":1}},{"t":"옥내소화전 + 스프링클러 겸용 펌프 계산, 원칙 3개면 끝납니다 | NFTC 102+103 실무 가이드","v":{"2026-06":1}},{"t":"유채꽃, 봄비, 그리고 서해 | 익산건축사회 야유회 기록","v":{"2026-06":1}},{"t":"남원 가볼만한곳 몽심재·광한루원·실상사 ｜ 세 곳 모두 가운데를 비워두었습니다 ｜ MANMIN 답사기","v":{"2026-07":261}},{"t":"완주 송광사·위봉사·위봉폭포 하루 답사 | 어진(御眞)을 지킨 성, 그리고 폐공장의 부활","v":{"2026-07":140}},{"t":"익산 근대답사| 옛 익옥수리조합(이리시민역사기록관)·춘포역·대아저수지 : 물길과 철길이 만든 도시, 이리","v":{"2026-07":122}},{"t":"[군산 시간여행] 나의 군산, 해망굴에서 수시탑까지 — 국민학교 등굣길, 40년 뒤 건축사가 되어 다시 걷다 ｜ 건축사의 고향, 군산 (3/3)","v":{"2026-07":104}},{"t":"남원 가볼만한곳 교룡산성·남원읍성·만인의총 ｜ 산의 성을 두고, 들의 성에서 싸웠습니다 ｜ MANMIN 답사기","v":{"2026-07":103}},{"t":"[군산 근대답사] 옥구에서 임피까지 — 익산에서 온 물이 멈추는 곳, 그리고 저항의 자리 ｜ 건축사의 고향, 군산 (2/3)","v":{"2026-07":74}},{"t":"부안 가볼만한곳 석정문학관·부안향교·고사포 ｜ 내가 감리한 시인의 집, 노을 앞에 다시 서다 ｜ MANMIN 답사기(김제·부안 심화 2부)","v":{"2026-07":73}},{"t":"김제 가볼만한곳 벽골제·벽천미술관·아리랑문학관 ｜ 평야 하나를 네 겹으로 읽다 ｜ MANMIN 답사기(김제·부안 심화 1부)","v":{"2026-07":70}},{"t":"[군산 근대건축] 원도심 한 바퀴 — 쌀이 떠난 항구, 벽돌에 새겨진 시간 ｜ 건축사의 고향, 군산 (1/3)","v":{"2026-07":63}},{"t":"익산 여산 답사기 | 가람 이병기 생가·여산동헌, 초가 한 채에 새긴 한글의 시간","v":{"2026-07":60}},{"t":"지도에서 지워진 섬, 오식도(筽篒島) ｜ 새만금에 묻힌 고향을 기록하다","v":{"2026-07":45}},{"t":"익산 부송 배드민턴 클럽 창립 20주년 D-90, \"20년의 한마음\"","v":{"2026-07":26}},{"t":"41명이 함께한 봄 섬 트레킹 ?? 금오도 비렁길 완주 | 전북건축사 등산·배드민턴 동호회 연합산행","v":{"2026-07":4}},{"t":"소방 펌프 용량 계산서, 7종 한 곳에서 끝냅니다 | MANMIN 소방 통합 포탈 완벽 가이드","v":{"2026-07":3}},{"t":"건폐율·용적률 계산, 국토계획법만 믿으면 큰일 납니다 | 건축사 실무 가이드","v":{"2026-07":2}},{"t":"존재하지 않는 게시물입니다.","v":{"2026-07":2}},{"t":"옥내소화전 + 옥외소화전 겸용 펌프 계산 완벽 정리 | NFTC 102+109 실무 가이드","v":{"2026-07":1}},{"t":"한라산 성판악→관음사 종주제주 3일 산행 브이로그2026년 4월 2일 ~ 4월 4일 · 익산 출발 · 광주공항 경유 · 제주 입도","v":{"2026-07":1}}]}, MS=D.months, MET=D.metrics, ITM=D.items||[];
+ var mi=0, rng=Math.min(12,MS.length);
+ var elM=document.getElementById('TRm'), elR=document.getElementById('TRr'),
+     elS=document.getElementById('TRsvg'), elT=document.getElementById('TRtb'),
+     elP=document.getElementById('TRtip'), elQ=document.getElementById('TRq'),
+     elL=document.getElementById('TRrs');
+ function fmt(v,f){ if(v==null) return '—';
+  if(f=='pct') return (Math.round(v*10)/10)+'%';
+  if(f=='dur'){var s=Math.round(v);return s>=60?Math.floor(s/60)+'분 '+(s%60)+'초':s+'초';}
+  if(f=='f1') return (Math.round(v*10)/10).toLocaleString();
+  if(f=='f2') return (Math.round(v*100)/100).toLocaleString();
+  return Math.round(v).toLocaleString(); }
+ function lbl(m){ return m.slice(2).replace('-','.'); }
+ [3,6,12].forEach(function(n,k){ var b=document.createElement('button');
+  var prev=[0,3,6][k];
+  b.textContent=n+'개월'; b.disabled=(MS.length<=prev);
+  b.title=b.disabled?('데이터가 '+MS.length+'개월분이라 아직 사용할 수 없습니다'):'';
+  b.onclick=function(){ if(b.disabled) return; rng=n; draw(); }; b.dataset.n=n; elR.appendChild(b); });
+ elM.querySelectorAll('button').forEach(function(b){
+  b.onclick=function(){ mi=+b.dataset.i;
+   elM.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+   b.classList.add('on'); draw(); }; });
+ function draw(){
+  elR.querySelectorAll('button').forEach(function(b){
+   b.classList.toggle('on', +b.dataset.n===rng); });
+  var M=MET[mi], ms=MS.slice(-rng), sr=D.series[M.k]||{};
+  var vs=ms.map(function(m){ return sr[m]==null?null:sr[m]; });
+  var mx=Math.max.apply(null,vs.filter(function(v){return v!=null;}).concat([1]));
+  var W=760,H=230,PL=54,PR=14,PT=16,PB=30, iw=W-PL-PR, ih=H-PT-PB;
+  var n=ms.length, bw=Math.min(46, iw/Math.max(n,1)*0.5);
+  function X(i){ return PL + iw*(n===1?0.5:(i/(n-1))); }
+  function Y(v){ return PT + ih - (v/mx)*ih; }
+  var g='';
+  for(var t=0;t<=4;t++){ var yy=PT+ih*t/4, gv=mx*(1-t/4);
+   g+='<line x1="'+PL+'" y1="'+yy+'" x2="'+(W-PR)+'" y2="'+yy+'" stroke="#2A3F5F" stroke-width="1" opacity="'+(t===4?1:.45)+'"/>';
+   g+='<text x="'+(PL-8)+'" y="'+(yy+4)+'" fill="#8A99B5" font-size="10" text-anchor="end">'+fmt(gv,M.f)+'</text>'; }
+  ms.forEach(function(m,i){ var v=vs[i]; if(v==null) return;
+   g+='<rect x="'+(X(i)-bw/2)+'" y="'+Y(v)+'" width="'+bw+'" height="'+(PT+ih-Y(v))+'" fill="#D4A017" opacity=".22" rx="3"/>'; });
+  var pts=[]; ms.forEach(function(m,i){ if(vs[i]!=null) pts.push(X(i)+','+Y(vs[i])); });
+  if(pts.length>1) g+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="#D4A017" stroke-width="2.2" stroke-linejoin="round"/>';
+  ms.forEach(function(m,i){ var v=vs[i]; if(v==null) return;
+   g+='<circle cx="'+X(i)+'" cy="'+Y(v)+'" r="4.2" fill="#0B1626" stroke="#D4A017" stroke-width="2.2"/>';
+   g+='<text x="'+X(i)+'" y="'+(H-10)+'" fill="#8A99B5" font-size="10.5" text-anchor="middle">'+lbl(m)+'</text>'; });
+  ms.forEach(function(m,i){
+   g+='<rect class="hz" data-i="'+i+'" x="'+(X(i)-iw/Math.max(n,1)/2)+'" y="'+PT+'" width="'+(iw/Math.max(n,1))+'" height="'+ih+'" fill="transparent"/>'; });
+  elS.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid meet">'+g+'</svg>';
+  var box=elS.getBoundingClientRect();
+  elS.querySelectorAll('.hz').forEach(function(r){
+   r.addEventListener('mouseenter', function(){ show(+r.dataset.i, ms, vs, M); });
+   r.addEventListener('mousemove', function(e){ move(e); });
+   r.addEventListener('mouseleave', function(){ elP.style.opacity=0; }); });
+  var tb='';
+  for(var i=ms.length-1;i>=0;i--){ var v=vs[i], p=i>0?vs[i-1]:null, d='—', cl='fl';
+   if(v!=null&&p!=null&&p!==0){ var r2=(v-p)/p*100;
+    d=(r2>=0?'+':'')+(Math.round(r2*10)/10)+'%'; cl=r2>0?'up':(r2<0?'dn':'fl'); }
+   tb+='<tr><td>'+ms[i].replace('-','.')+'</td><td class="v">'+fmt(v,M.f)+'</td>'
+     +'<td class="d '+cl+'">'+d+'</td><td class="b"><div class="bar" style="width:'
+     +(v==null?0:Math.max(2,v/mx*100))+'%"></div></td></tr>'; }
+  elT.innerHTML=tb;
+ }
+ function show(i,ms,vs,M){ var v=vs[i], p=i>0?vs[i-1]:null, ex='';
+  if(v!=null&&p!=null&&p!==0){ var r2=(v-p)/p*100;
+   ex='<br>전월 대비 <b>'+(r2>=0?'+':'')+(Math.round(r2*10)/10)+'%</b> ('+(v-p>=0?'+':'')+fmt(v-p,M.f)+')'; }
+  elP.innerHTML=ms[i].replace('-','.')+' · '+M.l+'<br><b>'+fmt(v,M.f)+'</b>'+ex;
+  elP.style.opacity=1; }
+ function move(e){ var b=elS.getBoundingClientRect();
+  var x=e.clientX-b.left, y=e.clientY-b.top;
+  elP.style.left=Math.min(Math.max(0,x+14), b.width-elP.offsetWidth-4)+'px';
+  elP.style.top=Math.max(0,y-46)+'px'; }
+ function search(){ var q=(elQ.value||'').trim().toLowerCase();
+  if(!q){ elL.innerHTML='<div class="msg">키워드를 입력하면 제목이 일치하는 게시글의 월별 수치를 보여줍니다. (총 '+ITM.length+'건 색인)</div>'; return; }
+  var hit=ITM.filter(function(it){ return it.t.toLowerCase().indexOf(q)>=0; });
+  if(!hit.length){ elL.innerHTML='<div class="msg">일치하는 항목이 없습니다.</div>'; return; }
+  hit.forEach(function(it){ it._s=Object.keys(it.v).reduce(function(a,k){ return a+(it.v[k]||0); },0); });
+  hit.sort(function(a,b){ return b._s-a._s; });
+  var top=Math.max.apply(null,hit.map(function(it){ return it._s; }).concat([1]));
+  elL.innerHTML=hit.slice(0,40).map(function(it){
+   var sp=MS.map(function(m){ var v=it.v[m]||0;
+    return '<i style="height:'+Math.max(2,Math.round(v/top*20))+'px" title="'+m+' '+v.toLocaleString()+'"></i>'; }).join('');
+   var det=MS.filter(function(m){ return it.v[m]; }).map(function(m){
+    return lbl(m)+' '+it.v[m].toLocaleString(); }).join(' · ');
+   return '<div class="row"><div class="sp">'+sp+'</div><div class="t" title="'
+    +it.t.replace(/"/g,'&quot;')+'">'+it.t+'<br><span style="color:#8A99B5;font-size:11px">'+det+'</span></div>'
+    +'<div class="n">'+it._s.toLocaleString()+'</div></div>'; }).join('')
+   + (hit.length>40?'<div class="msg">상위 40건만 표시 (총 '+hit.length+'건)</div>':'');
+ }
+ elQ.addEventListener('input', search);
+ draw(); search();
+})();
+</script>
  <div class="mgrid"><a class="mcard" href="2026-07/index.html"><div class="mv">2026.07</div><div class="mk">월간 분석 · 지표 25종</div><div class="go">열기 →</div></a><a class="mcard" href="2026-06/index.html"><div class="mv">2026.06</div><div class="mk">월간 분석 · 지표 24종</div><div class="go">열기 →</div></a></div>
  <footer>매월 초 갱신 · <a href="https://blog.naver.com/manmin72">blog.naver.com/manmin72</a> ·
   <a href="https://manminkim-eng.github.io/KIMMANMIN/">엔지니어링 플랫폼</a></footer>

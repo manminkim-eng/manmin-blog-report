@@ -55,4 +55,17 @@ if __name__ == "__main__":
         print(f"[건너뜀] 유튜브 데이터 없음: {yt_src}")
 
     check_snippet()
+
+    # NAS Web Station 자동 배포 → 밖에서 Tailscale ON 후 http://100.123.66.123/manmin-blog/ 로 열람.
+    #   정슬래시(//) UNC 사용(이 환경에서 역슬래시 \\ UNC는 파이썬에서 실패). data/스크립트/캐시는 제외.
+    #   NAS 미접속이어도 갱신이 멈추지 않도록 try/except.
+    try:
+        import shutil
+        WEB_DEST = "//MANMIN-NAS/web/manmin-blog"
+        shutil.copytree(REPO, WEB_DEST, dirs_exist_ok=True,
+                        ignore=shutil.ignore_patterns("__pycache__", "*.py", "*.pyc", "data", ".git"))
+        print("[NAS 배포] 완료:", WEB_DEST)
+    except Exception as ex:
+        print("[NAS 배포] 건너뜀(무시하고 계속):", repr(ex))
+
     print("\n[완료] 블로그·유튜브 갱신 완료. GitHub Desktop에서 Commit -> Push origin 하세요.")

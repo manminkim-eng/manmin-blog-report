@@ -135,15 +135,15 @@
   function Y(v){ return PT + ih - (v/mx)*ih; }
   var g='';
   for(var t=0;t<=4;t++){ var yy=PT+ih*t/4, gv=mx*(1-t/4);
-   g+='<line x1="'+PL+'" y1="'+yy+'" x2="'+(W-PR)+'" y2="'+yy+'" stroke="#2A3F5F" stroke-width="1" opacity="'+(t===4?1:.45)+'"/>';
-   g+='<text x="'+(PL-8)+'" y="'+(yy+4)+'" fill="#8A99B5" font-size="10" text-anchor="end">'+fmt(gv,M.f)+'</text>'; }
+   g+='<line x1="'+PL+'" y1="'+yy+'" x2="'+(W-PR)+'" y2="'+yy+'" stroke="var(--line)" stroke-width="1" opacity="'+(t===4?1:.45)+'"/>';
+   g+='<text x="'+(PL-8)+'" y="'+(yy+4)+'" fill="var(--muted)" font-size="10" text-anchor="end">'+fmt(gv,M.f)+'</text>'; }
   ms.forEach(function(m,i){ var v=vs[i]; if(v==null) return;
-   g+='<rect x="'+(X(i)-bw/2)+'" y="'+Y(v)+'" width="'+bw+'" height="'+(PT+ih-Y(v))+'" fill="#D4A017" opacity=".22" rx="3"/>'; });
+   g+='<rect x="'+(X(i)-bw/2)+'" y="'+Y(v)+'" width="'+bw+'" height="'+(PT+ih-Y(v))+'" fill="var(--gold)" opacity=".22" rx="3"/>'; });
   var pts=[]; ms.forEach(function(m,i){ if(vs[i]!=null) pts.push(X(i)+','+Y(vs[i])); });
-  if(pts.length>1) g+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="#D4A017" stroke-width="2.2" stroke-linejoin="round"/>';
+  if(pts.length>1) g+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linejoin="round"/>';
   ms.forEach(function(m,i){ var v=vs[i]; if(v==null) return;
-   g+='<circle cx="'+X(i)+'" cy="'+Y(v)+'" r="4.2" fill="#0B1626" stroke="#D4A017" stroke-width="2.2"/>';
-   g+='<text x="'+X(i)+'" y="'+(H-10)+'" fill="#8A99B5" font-size="10.5" text-anchor="middle">'+lbl(m)+'</text>'; });
+   g+='<circle cx="'+X(i)+'" cy="'+Y(v)+'" r="4.2" fill="var(--bg)" stroke="var(--gold)" stroke-width="2.2"/>';
+   g+='<text x="'+X(i)+'" y="'+(H-10)+'" fill="var(--muted)" font-size="10.5" text-anchor="middle">'+lbl(m)+'</text>'; });
   ms.forEach(function(m,i){
    g+='<rect class="hz" data-i="'+i+'" x="'+(X(i)-iw/Math.max(n,1)/2)+'" y="'+PT+'" width="'+(iw/Math.max(n,1))+'" height="'+ih+'" fill="transparent"/>'; });
   elS.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="xMidYMid meet">'+g+'</svg>';

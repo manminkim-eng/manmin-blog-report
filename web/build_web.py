@@ -288,8 +288,8 @@ def build_month(month, period, token=None, offline=False):
    <div class="sub">manminkim-eng.github.io · GoatCounter 계측 · 건축사 김만민(#20072)</div></div></div>
    <div class="period">{period}</div></header>
  <section class="kpis">{kpis}</section>
- <div class="toolbar"><a href="index.html">🏠 웹 리포트</a><a href="../index.html">📝 블로그</a>
-   <a href="../youtube/index.html">▶ 유튜브</a>
+ <div class="toolbar"><a href="../index.html">🏠 웹 리포트</a><a href="../../index.html">📝 블로그</a>
+   <a href="../../youtube/index.html">▶ 유튜브</a>
    <a href="https://manminkim-eng.github.io/KIMMANMIN/" target="_blank">🛠 엔지니어링 플랫폼</a>
    <a href="https://manminkim-eng.github.io/manmin-hub/" target="_blank">📋 종합관리 허브</a></div>
  {sections}

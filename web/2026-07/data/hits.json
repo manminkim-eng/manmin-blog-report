@@ -1,0 +1,84 @@
+{
+ "total": 135,
+ "more": false,
+ "hits": [
+  {
+   "path": "/KIMMANMIN",
+   "title": "김만민 건축사 — 대성건축사사무소",
+   "count": 70,
+   "event": false
+  },
+  {
+   "path": "/manmin-blog-report",
+   "title": "MANMIN 블로그 리포트",
+   "count": 16,
+   "event": false
+  },
+  {
+   "path": "/manmin-blog-report/2026-06/index.html",
+   "title": "MANMIN 블로그 분석 · 2026.06 월간",
+   "count": 14,
+   "event": false
+  },
+  {
+   "path": "/manmin-blog-report/youtube/2026-06/index.html",
+   "title": "MANMIN 유튜브 분석 · 2026.06 월간",
+   "count": 7,
+   "event": false
+  },
+  {
+   "path": "/manmin-blog-report/index.html",
+   "title": "MANMIN 블로그 리포트",
+   "count": 6,
+   "event": false
+  },
+  {
+   "path": "/manmin-blog-report/youtube/index.html",
+   "title": "MANMIN 유튜브 리포트",
+   "count": 6,
+   "event": false
+  },
+  {
+   "path": "/manmin-blog-report/2026-06/dashboard.html",
+   "title": "MANMIN 블로그 성과 대시보드",
+   "count": 4,
+   "event": false
+  },
+  {
+   "path": "/manmin-blog/2026-06/index.html",
+   "title": "MANMIN 블로그 분석 · 2026.06 월간",
+   "count": 3,
+   "event": false
+  },
+  {
+   "path": "/manmin-blog",
+   "title": "MANMIN 블로그 리포트",
+   "count": 3,
+   "event": false
+  },
+  {
+   "path": "/manmin-blog/youtube/2026-06/index.html",
+   "title": "MANMIN 유튜브 분석 · 2026.06 월간",
+   "count": 2,
+   "event": false
+  },
+  {
+   "path": "/manmin-blog/youtube/index.html",
+   "title": "MANMIN 유튜브 리포트",
+   "count": 2,
+   "event": false
+  },
+  {
+   "path": "/manmin-blog/2026-06/dashboard.html",
+   "title": "MANMIN 블로그 성과 대시보드",
+   "count": 1,
+   "event": false
+  },
+  {
+   "path": "/manmin-blog/index.html",
+   "title": "MANMIN 블로그 리포트",
+   "count": 1,
+   "event": false
+  }
+ ]
+}

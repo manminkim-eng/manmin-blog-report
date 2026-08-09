@@ -305,7 +305,7 @@ LANDING="""<!DOCTYPE html>
    <h1>MANMIN 블로그 성과 리포트</h1>
    <div class="sub">네이버 블로그 manmin72 월간 분석 아카이브 · 건축사 김만민(#20072)</div></div></div>
    <div class="period">총 {n}개월 색인</div></header>
- <div class="chtabs"><a class="ct active">📝 네이버 블로그</a><a class="ct" href="youtube/index.html">▶ 유튜브</a></div>
+ <div class="chtabs"><a class="ct active">📝 네이버 블로그</a><a class="ct" href="youtube/index.html">▶ 유튜브</a><a class="ct" href="web/index.html">🛠 엔지니어링 웹</a></div>
  <div class="lead"><b>MANMIN 답사·엔지니어링</b> 블로그의 월간 방문·유입·콘텐츠·이웃 지표를 매월 색인합니다. 아래 월을 선택하면 해당 월 상세 인덱스로 이동합니다.</div>
  {trend}
  <div class="mgrid">{cards}</div>

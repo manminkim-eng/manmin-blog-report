@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANMIN 웹 분석 2026-08</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<style>
+ :root{--bg:#0B1626;--panel:#14233A;--panel2:#1B2E4A;--line:#2A3F5F;--acc:#2FA8D5;--ink:#E9ECF2;--muted:#8A99B5}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{background:var(--bg);color:var(--ink);font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;line-height:1.5;
+  background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:44px 44px}
+ .wrap{max-width:1180px;margin:0 auto;padding:28px 16px 56px}
+ header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;border-bottom:2px solid var(--acc);padding-bottom:16px}
+ .brand{display:flex;align-items:center;gap:12px} .brand img{width:38px;height:38px}
+ h1{font-size:22px;font-weight:800;letter-spacing:-.5px}
+ .sub{color:var(--muted);font-size:12.5px;margin-top:4px}
+ .period{color:var(--acc);font-size:12.5px}
+ .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:20px 0}
+ .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 14px;position:relative;overflow:hidden}
+ .kpi::before{content:"";position:absolute;left:0;top:0;width:4px;height:100%;background:var(--acc)}
+ .kpi .k{color:var(--muted);font-size:11px} .kpi .v{font-size:21px;font-weight:800;margin-top:3px}
+ .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 18px}
+ .toolbar a{font-size:12px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 12px;text-decoration:none}
+ .toolbar a:hover{border-color:var(--acc)}
+ .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+ .card h2{font-size:14.5px;font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+ .card h2 .dot{width:9px;height:9px;border-radius:2px;flex:none;background:var(--acc)}
+ .card h2 .cnt{color:var(--muted);font-size:11.5px;font-weight:500}
+ table{width:100%;border-collapse:collapse;font-size:12.5px}
+ th{text-align:left;color:var(--muted);font-weight:600;font-size:11px;border-bottom:1px solid var(--line);padding:6px 8px}
+ td{border-bottom:1px solid rgba(42,63,95,.5);padding:8px} td.nm{font-weight:600;min-width:120px}
+ td.num{text-align:right;font-variant-numeric:tabular-nums} td.num b{color:var(--acc)}
+ td.nt{color:var(--muted);font-size:11.5px}
+ .tag{font-size:10.5px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin-left:6px}
+ .bar{height:6px;background:var(--panel2);border-radius:3px;overflow:hidden;min-width:60px}
+ .bar i{display:block;height:100%;background:var(--acc)}
+ footer{color:var(--muted);font-size:11.5px;text-align:center;margin-top:24px;border-top:1px solid var(--line);padding-top:16px}
+ footer a{color:var(--acc);text-decoration:none}
+ .chtabs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+ .ct{font-size:13px;font-weight:700;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 16px;text-decoration:none}
+ .ct.active{color:#0B1626;background:var(--acc);border-color:var(--acc)}
+ .ct:hover{border-color:var(--acc)}
+ .lead{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;padding:15px 18px;margin-top:16px;font-size:13.5px}
+ .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:22px}
+ .mcard{display:block;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:14px;padding:18px 20px;text-decoration:none;color:var(--ink);transition:.15s}
+ .mcard:hover{border-color:var(--acc);transform:translateY(-2px)}
+ .mcard .mv{font-size:26px;font-weight:800;letter-spacing:-.5px}
+ .mcard .mk{color:var(--muted);font-size:12px;margin-top:4px} .mcard .go{color:var(--acc);font-size:12px;margin-top:12px}
+ @media(max-width:860px){.kpis{grid-template-columns:repeat(3,1fr)}td.nt{display:none}}
+ @media(max-width:520px){.kpis{grid-template-columns:repeat(2,1fr)}}
+</style></head><body><div class="wrap"> <header><div class="brand"><img src="../assets/favicon.svg" alt="MANMIN"><div>
+   <h1>MANMIN 엔지니어링 웹 방문 분석</h1>
+   <div class="sub">manminkim-eng.github.io · GoatCounter 계측 · 건축사 김만민(#20072)</div></div></div>
+   <div class="period">2026.08 월간 (1~9일 잠정)</div></header>
+ <section class="kpis"><div class='kpi'><div class='k'>총 방문자</div><div class='v'>69</div></div><div class='kpi'><div class='k'>계측 경로</div><div class='v'>9 ↓3</div></div><div class='kpi'><div class='k'>채널 수</div><div class='v'>3</div></div><div class='kpi'><div class='k'>WAP 계측</div><div class='v'>0</div></div><div class='kpi'><div class='k'>최다 방문</div><div class='v'>엔지니어링 플랫폼</div></div></section>
+ <div class="toolbar"><a href="index.html">🏠 웹 리포트</a><a href="../index.html">📝 블로그</a>
+   <a href="../youtube/index.html">▶ 유튜브</a>
+   <a href="https://manminkim-eng.github.io/KIMMANMIN/" target="_blank">🛠 엔지니어링 플랫폼</a>
+   <a href="https://manminkim-eng.github.io/manmin-hub/" target="_blank">📋 종합관리 허브</a></div>
+ <div class='card'><h2><span class='dot'></span>채널별 방문자</h2><table><tr><th>채널</th><th>방문자</th><th></th><th>비중</th></tr><tr><td class='nm'>엔지니어링 플랫폼<span class='tag'>플랫폼</span></td><td class='num'><b>37</b></td><td style='width:34%'><div class='bar'><i style='width:100.0%'></i></div></td><td class='nt'>1개 경로</td></tr><tr><td class='nm'>블로그 리포트<span class='tag'>리포트</span></td><td class='num'><b>21</b></td><td style='width:34%'><div class='bar'><i style='width:56.8%'></i></div></td><td class='nt'>5개 경로</td></tr><tr><td class='nm'>유튜브 리포트<span class='tag'>리포트</span></td><td class='num'><b>11</b></td><td style='width:34%'><div class='bar'><i style='width:29.7%'></i></div></td><td class='nt'>3개 경로</td></tr></table></div><div class='card'><h2><span class='dot'></span>WAP 개별 순위</h2><div class='nt' style='color:var(--muted);font-size:12.5px'>계측 스니펫이 배포된 개별 WAP가 아직 없습니다.</div></div><div class='card'><h2><span class='dot'></span>인기 경로 TOP 25</h2><table><tr><th>경로</th><th>방문자</th><th></th><th>제목</th></tr><tr><td class='nm'>/KIMMANMIN</td><td class='num'><b>37</b></td><td style='width:34%'><div class='bar'><i style='width:100.0%'></i></div></td><td class='nt'>김만민 건축사 — 대성건축사사무소</td></tr><tr><td class='nm'>/manmin-blog-report<span class='tag'>병합 2</span></td><td class='num'><b>17</b></td><td style='width:34%'><div class='bar'><i style='width:45.9%'></i></div></td><td class='nt'>MANMIN 블로그 리포트</td></tr><tr><td class='nm'>/manmin-blog-report/youtube<span class='tag'>병합 3</span></td><td class='num'><b>7</b></td><td style='width:34%'><div class='bar'><i style='width:18.9%'></i></div></td><td class='nt'>MANMIN 유튜브 리포트</td></tr><tr><td class='nm'>/manmin-blog-report/youtube/2026-07</td><td class='num'><b>3</b></td><td style='width:34%'><div class='bar'><i style='width:8.1%'></i></div></td><td class='nt'>MANMIN 유튜브 분석 · 2026.07 월간</td></tr><tr><td class='nm'>/manmin-blog-report/2026-07/dashboard.html</td><td class='num'><b>1</b></td><td style='width:34%'><div class='bar'><i style='width:2.7%'></i></div></td><td class='nt'>MANMIN 블로그 성과 대시보드</td></tr><tr><td class='nm'>/manmin-blog-report/2026-07</td><td class='num'><b>1</b></td><td style='width:34%'><div class='bar'><i style='width:2.7%'></i></div></td><td class='nt'>MANMIN 블로그 분석 · 2026.07 월간</td></tr><tr><td class='nm'>/manmin-blog-report/2026-06/dashboard.html</td><td class='num'><b>1</b></td><td style='width:34%'><div class='bar'><i style='width:2.7%'></i></div></td><td class='nt'>MANMIN 블로그 성과 대시보드</td></tr><tr><td class='nm'>/manmin-blog-report/2026-06</td><td class='num'><b>1</b></td><td style='width:34%'><div class='bar'><i style='width:2.7%'></i></div></td><td class='nt'>MANMIN 블로그 분석 · 2026.06 월간</td></tr><tr><td class='nm'>/manmin-blog-report/youtube/2026-06</td><td class='num'><b>1</b></td><td style='width:34%'><div class='bar'><i style='width:2.7%'></i></div></td><td class='nt'>MANMIN 유튜브 분석 · 2026.06 월간</td></tr></table><div style='color:var(--muted);font-size:11.5px;margin-top:8px'>· 동일 페이지의 다른 표기(/index.html · 끝 슬래시 · ?쿼리) 3건을 하나로 합산했습니다.</div></div><div class='card'><h2><span class='dot'></span>유입 경로</h2><table><tr><th>유입원</th><th>방문자</th><th></th><th>비중</th></tr><tr><td class='nm'>(직접 유입)</td><td class='num'><b>42</b></td><td style='width:34%'><div class='bar'><i style='width:100.0%'></i></div></td><td class='nt'>60.9%</td></tr><tr><td class='nm'>manminkim-eng.github.io/manmin-blog-report/youtube/index.html</td><td class='num'><b>7</b></td><td style='width:34%'><div class='bar'><i style='width:16.7%'></i></div></td><td class='nt'>10.1%</td></tr><tr><td class='nm'>manminkim-eng.github.io/manmin-blog-report</td><td class='num'><b>5</b></td><td style='width:34%'><div class='bar'><i style='width:11.9%'></i></div></td><td class='nt'>7.2%</td></tr><tr><td class='nm'>www.youtube.com</td><td class='num'><b>2</b></td><td style='width:34%'><div class='bar'><i style='width:4.8%'></i></div></td><td class='nt'>2.9%</td></tr><tr><td class='nm'>manminkim-eng.github.io/manmin-blog-report/index.html</td><td class='num'><b>2</b></td><td style='width:34%'><div class='bar'><i style='width:4.8%'></i></div></td><td class='nt'>2.9%</td></tr><tr><td class='nm'>m.blog.naver.com/PostView.naver</td><td class='num'><b>1</b></td><td style='width:34%'><div class='bar'><i style='width:2.4%'></i></div></td><td class='nt'>1.4%</td></tr><tr><td class='nm'>manminkim-eng.github.io/manmin-blog-report/2026-06/index.html</td><td class='num'><b>1</b></td><td style='width:34%'><div class='bar'><i style='width:2.4%'></i></div></td><td class='nt'>1.4%</td></tr><tr><td class='nm'>manminkim-eng.github.io/name-card</td><td class='num'><b>1</b></td><td style='width:34%'><div class='bar'><i style='width:2.4%'></i></div></td><td class='nt'>1.4%</td></tr><tr><td class='nm'>manminkim-eng.github.io/manmin-blog-report/youtube</td><td class='num'><b>1</b></td><td style='width:34%'><div class='bar'><i style='width:2.4%'></i></div></td><td class='nt'>1.4%</td></tr><tr><td class='nm'>github.com/manminkim-eng/manmin-blog-report/settings/pages</td><td class='num'><b>1</b></td><td style='width:34%'><div class='bar'><i style='width:2.4%'></i></div></td><td class='nt'>1.4%</td></tr></table></div><div class='card'><h2><span class='dot'></span>브라우저</h2><table><tr><th>브라우저</th><th>방문자</th><th></th><th>비중</th></tr><tr><td class='nm'>Chrome</td><td class='num'><b>69</b></td><td style='width:34%'><div class='bar'><i style='width:100.0%'></i></div></td><td class='nt'>100.0%</td></tr></table></div><div class='card'><h2><span class='dot'></span>운영체제</h2><table><tr><th>OS</th><th>방문자</th><th></th><th>비중</th></tr><tr><td class='nm'>Android</td><td class='num'><b>43</b></td><td style='width:34%'><div class='bar'><i style='width:100.0%'></i></div></td><td class='nt'>62.3%</td></tr><tr><td class='nm'>Windows</td><td class='num'><b>26</b></td><td style='width:34%'><div class='bar'><i style='width:60.5%'></i></div></td><td class='nt'>37.7%</td></tr></table></div><div class='card'><h2><span class='dot'></span>국가</h2><table><tr><th>국가</th><th>방문자</th><th></th><th>비중</th></tr><tr><td class='nm'>South Korea</td><td class='num'><b>69</b></td><td style='width:34%'><div class='bar'><i style='width:100.0%'></i></div></td><td class='nt'>100.0%</td></tr></table></div>
+ <footer>데이터 출처: GoatCounter API (manmin.goatcounter.com) · 원본 JSON은 data/ 폴더에 보관
+  <div style="margin-top:6px"><a href="https://manminkim-eng.github.io/KIMMANMIN/">엔지니어링 플랫폼</a></div></footer>
+</div></body></html>

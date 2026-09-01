@@ -53,6 +53,13 @@ RULES={
  "발행 편수":("⑦ 생산성·벤치마크","series"),"게시글 관리":("⑦ 생산성·벤치마크","series"),
  "블로그 평균 데이터":("⑦ 생산성·벤치마크","series"),"주제별 인기글":("⑦ 생산성·벤치마크","rank"),
 }
+# 데이터명 → 화면 표기명 (네이버 원본 명칭이 실제 값과 다를 때 보정)
+DISPLAY_NAME={
+ "재방문율":"재방문자수",                 # 선택2=재방문자수 → 비율 아님, 명 수
+ "평균사용시간":"평균사용시간(서로이웃)",   # 전체 필터 미제공
+ "이웃방문현황":"이웃방문현황(서로이웃)",
+ "이웃증감수":"이웃증감수(추가수)",
+}
 CATCOLOR={"①":"#D4A017","②":"#3E7CB1","③":"#C8452F","④":"#D4A017","⑤":"#5FA98C","⑥":"#8A99B5","⑦":"#B07AA1"}
 ORDER=["① 트래픽·방문","② 유입·환경","③ 독자 프로필","④ 콘텐츠 순위","⑤ 이웃·구독","⑥ 영상","⑦ 생산성·벤치마크"]
 
@@ -138,7 +145,8 @@ def build_month(src, month, period):
         color=CATCOLOR.get(cat[0],"#8A99B5")
         trs=""
         for name,kv,per,fname in items:
-            trs+=(f'<tr><td class="nm">{html.escape(name)}</td>'
+            disp=DISPLAY_NAME.get(name,name)
+            trs+=(f'<tr><td class="nm">{html.escape(disp)}</td>'
                   f'<td class="kv">{kv}</td>'
                   f'<td class="nt">{html.escape(per)}</td>'
                   f'<td class="dl"><a href="data/{html.escape(fname)}" download>xlsx ↓</a></td></tr>')
@@ -172,7 +180,7 @@ BLOG_METRICS=[
  {"k":"조회수","l":"조회수","f":"int"},
  {"k":"순방문자수","l":"순방문자","f":"int"},
  {"k":"방문횟수","l":"방문횟수","f":"int"},
- {"k":"재방문율","l":"재방문율","f":"pct"},
+ {"k":"재방문율","l":"재방문자수","f":"int"},
  {"k":"평균방문횟수","l":"평균 방문횟수","f":"f2"},
  {"k":"이웃증감수","l":"이웃 증가","f":"int"},
  {"k":"평균사용시간","l":"평균 사용시간","f":"dur"},

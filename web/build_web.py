@@ -195,6 +195,7 @@ TABS = ('<div class="chtabs"><a class="ct" href="{r}index.html">📝 네이버 �
 HEAD_RAW = """<!DOCTYPE html>
 <html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>__TITLE__</title><link rel="icon" href="__FAV__" type="image/svg+xml">
+<script defer src="/manmin-blog-report/web/assets/manmin-analytics.js"></script>
 <style>""" + STYLE + """</style></head><body><div class="wrap">"""
 
 

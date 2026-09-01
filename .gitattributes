@@ -1,0 +1,14 @@
+# 줄바꿈 정규화 — 저장소에는 항상 LF로 저장한다.
+# Python 스크립트가 CRLF로 파일을 다시 써도 "허수 변경"이 생기지 않는다.
+* text=auto
+
+# 바이너리 — 변환 금지
+*.xlsx binary
+*.xls  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary

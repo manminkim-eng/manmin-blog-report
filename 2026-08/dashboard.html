@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MANMIN 블로그 성과 대시보드</title>
-<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../assets/icon-180.png"><meta name="theme-color" content="#0B1626"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="MANMIN 블로그">
-<style>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;MANMIN 블로그 성과 대시보드&lt;/title&gt;
+&lt;link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"&gt;&lt;link rel="manifest" href="../manifest.webmanifest"&gt;&lt;link rel="apple-touch-icon" href="../assets/icon-180.png"&gt;&lt;meta name="theme-color" content="#0B1626"&gt;&lt;meta name="mobile-web-app-capable" content="yes"&gt;&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;&lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;&lt;meta name="apple-mobile-web-app-title" content="MANMIN 블로그"&gt;
+&lt;style&gt;
   :root{
     --bg:#0B1626; --panel:#14233A; --panel2:#1B2E4A; --line:#2A3F5F;
     --gold:#D4A017; --ink:#E9ECF2; --muted:#8A99B5;
@@ -50,44 +50,44 @@
   footer{color:var(--muted);font-size:11.5px;text-align:center;margin-top:30px;border-top:1px solid var(--line);padding-top:16px}
   footer a{color:var(--gold);text-decoration:none}
   @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.card.tall{grid-column:span 1}h1{font-size:20px}}
-</style>
-<script data-goatcounter="https://manmin.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></head>
-<body>
-<div class="wrap">
-  <header>
-    <div class="brand"><div class="bar"></div>
-      <div><h1>MANMIN 블로그 성과 대시보드</h1>
-      <div class="sub">네이버 블로그 manmin72 · 건축사 김만민 · 방문·유입·콘텐츠 통합 분석</div></div>
-    </div>
-    <div class="period" id="periodLabel">2026.08 월간 (개설 2026.04~)</div>
-  </header>
-  <div class="toolbar"><a href="index.html">📑 데이터 인덱스</a><a href="../index.html">🏠 전체 리포트</a><a href="https://blog.naver.com/manmin72" target="_blank">✍ 네이버 블로그</a></div>
-  <section class="kpis" id="kpis"></section>
-  <div class="insight" id="headline">로딩 중…</div>
-  <section class="grid">
-    <div class="card"><h2><span class="dot"></span>순방문자수(UV) 성장</h2><div class="cap">월간 순방문자 · 2026.04 실질 개설 이후</div><div id="uvChart"></div></div>
-    <div class="card"><h2><span class="dot"></span>유입 채널 구성</h2><div class="cap">2026.08 월간 · 검색 계열 51.8%</div><div id="chanChart"></div></div>
-    <div class="card"><h2><span class="dot"></span>독자 성·연령 분포</h2><div class="cap">2026.08 조회 기준 · 40대 이상 77.5%</div><div id="ageChart"></div></div>
-    <div class="card"><h2><span class="dot"></span>카테고리 효율(편당 평균 조회)</h2><div class="cap">막대=평균 조회 · 괄호=편수</div><div id="catChart"></div></div>
-    <div class="card tall"><h2><span class="dot"></span>조회수 상위 게시글 Top 8</h2><div class="cap">2026.08 월간 · 색상=카테고리</div><div id="topChart"></div>
-      <div class="chips">
-        <span class="chip"><i style="background:#D4A017"></i>답사</span>
-        <span class="chip"><i style="background:#C8452F"></i>개인서사</span>
-        <span class="chip"><i style="background:#3E7CB1"></i>엔지니어링</span>
-        <span class="chip"><i style="background:#5FA98C"></i>장비/IT</span>
-      </div>
-    </div>
-  </section>
-  <div class="note" id="updnote">갱신 방법: 상단 DATA 객체 값만 매월 교체하면 모든 그래프가 자동 반영됩니다. 외부 서버·라이브러리 없이 단일 파일로 동작합니다.</div>
-  <footer>
+&lt;/style&gt;
+&lt;script data-goatcounter="https://manmin.goatcounter.com/count" async src="//gc.zgo.at/count.js"&gt;&lt;/script&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="wrap"&gt;
+  &lt;header&gt;
+    &lt;div class="brand"&gt;&lt;div class="bar"&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;h1&gt;MANMIN 블로그 성과 대시보드&lt;/h1&gt;
+      &lt;div class="sub"&gt;네이버 블로그 manmin72 · 건축사 김만민 · 방문·유입·콘텐츠 통합 분석&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="period" id="periodLabel"&gt;2026.08 월간 (개설 2026.04~)&lt;/div&gt;
+  &lt;/header&gt;
+  &lt;div class="toolbar"&gt;&lt;a href="index.html"&gt;📑 데이터 인덱스&lt;/a&gt;&lt;a href="../index.html"&gt;🏠 전체 리포트&lt;/a&gt;&lt;a href="https://blog.naver.com/manmin72" target="_blank"&gt;✍ 네이버 블로그&lt;/a&gt;&lt;/div&gt;
+  &lt;section class="kpis" id="kpis"&gt;&lt;/section&gt;
+  &lt;div class="insight" id="headline"&gt;로딩 중…&lt;/div&gt;
+  &lt;section class="grid"&gt;
+    &lt;div class="card"&gt;&lt;h2&gt;&lt;span class="dot"&gt;&lt;/span&gt;순방문자수(UV) 성장&lt;/h2&gt;&lt;div class="cap"&gt;월간 순방문자 · 2026.04 실질 개설 이후&lt;/div&gt;&lt;div id="uvChart"&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class="card"&gt;&lt;h2&gt;&lt;span class="dot"&gt;&lt;/span&gt;유입 채널 구성&lt;/h2&gt;&lt;div class="cap"&gt;2026.08 월간 · 검색 계열 51.8%&lt;/div&gt;&lt;div id="chanChart"&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class="card"&gt;&lt;h2&gt;&lt;span class="dot"&gt;&lt;/span&gt;독자 성·연령 분포&lt;/h2&gt;&lt;div class="cap"&gt;2026.08 조회 기준 · 40대 이상 77.5%&lt;/div&gt;&lt;div id="ageChart"&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class="card"&gt;&lt;h2&gt;&lt;span class="dot"&gt;&lt;/span&gt;카테고리 효율(편당 평균 조회)&lt;/h2&gt;&lt;div class="cap"&gt;막대=평균 조회 · 괄호=편수&lt;/div&gt;&lt;div id="catChart"&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class="card tall"&gt;&lt;h2&gt;&lt;span class="dot"&gt;&lt;/span&gt;조회수 상위 게시글 Top 8&lt;/h2&gt;&lt;div class="cap"&gt;2026.08 월간 · 색상=카테고리&lt;/div&gt;&lt;div id="topChart"&gt;&lt;/div&gt;
+      &lt;div class="chips"&gt;
+        &lt;span class="chip"&gt;&lt;i style="background:#D4A017"&gt;&lt;/i&gt;답사&lt;/span&gt;
+        &lt;span class="chip"&gt;&lt;i style="background:#C8452F"&gt;&lt;/i&gt;개인서사&lt;/span&gt;
+        &lt;span class="chip"&gt;&lt;i style="background:#3E7CB1"&gt;&lt;/i&gt;엔지니어링&lt;/span&gt;
+        &lt;span class="chip"&gt;&lt;i style="background:#5FA98C"&gt;&lt;/i&gt;장비/IT&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;div class="note" id="updnote"&gt;갱신 방법: 상단 DATA 객체 값만 매월 교체하면 모든 그래프가 자동 반영됩니다. 외부 서버·라이브러리 없이 단일 파일로 동작합니다.&lt;/div&gt;
+  &lt;footer&gt;
     MANMIN 답사·엔지니어링 · 건축사 김만민(#20072) ·
-    <a href="https://blog.naver.com/manmin72">blog.naver.com/manmin72</a> ·
-    <a href="https://manminkim-eng.github.io/KIMMANMIN/">엔지니어링 플랫폼</a> ·
-    <a href="https://www.youtube.com/@김만민-x8p">YouTube</a>
-    <div style="margin-top:6px">데이터: 네이버 블로그 통계 지표 다운로드 · 기준일 2026.08.01 · 외부 라이브러리 없이 동작</div>
-  </footer>
-</div>
-<script>
+    &lt;a href="https://blog.naver.com/manmin72"&gt;blog.naver.com/manmin72&lt;/a&gt; ·
+    &lt;a href="https://manminkim-eng.github.io/KIMMANMIN/"&gt;엔지니어링 플랫폼&lt;/a&gt; ·
+    &lt;a href="https://www.youtube.com/@김만민-x8p"&gt;YouTube&lt;/a&gt;
+    &lt;div style="margin-top:6px"&gt;데이터: 네이버 블로그 통계 지표 다운로드 · 기준일 2026.08.01 · 외부 라이브러리 없이 동작&lt;/div&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+&lt;script&gt;
 /* ===== 매월 이 DATA 객체만 교체하면 갱신됩니다 (외부 CDN·폰트 불필요) ===== */
 var DATA={
   period:"2026.08 월간 (개설 2026.04~)",
@@ -96,12 +96,12 @@ var DATA={
   channel:[["네이버검색",51.8,"#D4A017"],["네이버블로그/이웃",37.6,"#B8862F"],["네이버메인",4.8,"#5FA98C"],["Daum",3.2,"#3E7CB1"],["기타",2.6,"#5A6B85"]],
   age:[["0-12",2,0],["13-18",4,8],["19-24",24,50],["25-29",49,151],["30-34",86,182],["35-39",93,251],["40-44",190,303],["45-49",259,290],["50-54",228,351],["55-59",287,322],["60-",591,271]],
   cat:[["답사",45,2826,62.8,"#D4A017"],["엔지니어링",43,529,12.3,"#3E7CB1"],["개인서사",7,138,19.7,"#C8452F"],["장비/IT",1,14,14.0,"#5FA98C"]],
-  top:[["공주 계룡산 동학사 (논산·계룡 2부)",494,"#D4A017"],["남원 몸심재·광한루원·실상사",223,"#D4A017"],["김제 벽골제·벽천미술관·아리랑문학관",188,"#D4A017"],["익산 제석사지 (논산·완주·익산 4부)",165,"#D4A017"],["논산·완주 쌍계사·화암사 (3부)",141,"#D4A017"],["싱가포르 인천공항T2·창이T4 (1부)",110,"#D4A017"],["남원 교룡산성·남원읍성·만인의총",109,"#D4A017"],["완주 송광사·위봉사·위봉폭포",104,"#D4A017"]]
+  top:[["공주 계룡산 동학사 (논산·계룡 2부)",494,"#D4A017"],["남원 몽심재·광한루원·실상사",223,"#D4A017"],["김제 벽골제·벽천미술관·아리랑문학관",188,"#D4A017"],["익산 제석사지 (논산·완주·익산 4부)",165,"#D4A017"],["논산·완주 쌍계사·화암사 (3부)",141,"#D4A017"],["싱가포르 인천공항T2·창이T4 (1부)",110,"#D4A017"],["남원 교룡산성·남원읍성·만인의총",109,"#D4A017"],["완주 송광사·위봉사·위봉폭포",104,"#D4A017"]]
 };
 var C={gold:"#D4A017",ink:"#E9ECF2",muted:"#8A99B5",line:"#2A3F5F",eng:"#3E7CB1",story:"#C8452F"};
-function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
-function svg(w,h,inner){return '<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMidYMid meet">'+inner+'</svg>'}
-function T(x,y,t,o){o=o||{};return '<text x="'+x+'" y="'+y+'" fill="'+(o.fill||C.muted)+'" font-size="'+(o.s||11)+'" text-anchor="'+(o.a||'start')+'" '+(o.w?'font-weight="'+o.w+'"':'')+'>'+esc(t)+'</text>'}
+function esc(s){return String(s).replace(/&amp;/g,"&amp;amp;").replace(/&lt;/g,"&amp;lt;")}
+function svg(w,h,inner){return '&lt;svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMidYMid meet"&gt;'+inner+'&lt;/svg&gt;'}
+function T(x,y,t,o){o=o||{};return '&lt;text x="'+x+'" y="'+y+'" fill="'+(o.fill||C.muted)+'" font-size="'+(o.s||11)+'" text-anchor="'+(o.a||'start')+'" '+(o.w?'font-weight="'+o.w+'"':'')+'&gt;'+esc(t)+'&lt;/text&gt;'}
 
 try{
   document.getElementById('periodLabel').textContent=DATA.period;
@@ -112,23 +112,23 @@ try{
     ['조회수(월)',k.useTime,k.useDelta,''],
     ['이웃 증가(월)',k.neighbor,k.neighborDelta,''],
     ['상위 글 조회 합',k.views,k.viewsNote,'flat']
-  ].map(function(r){return '<div class="kpi"><div class="k">'+r[0]+'</div><div class="v">'+r[1]+'</div><div class="d '+r[3]+'">'+r[2]+'</div></div>'}).join('');
-  document.getElementById('headline').innerHTML='핵심: 월 UV <b>2,160&#8594;2,989</b>(+38%), 조회수 <b>3,241&#8594;5,040</b>(+55%). <b>답사기</b>가 상위 글 조회의 <b>80.6%</b>(2,826회)를 차지하며 편당 평균 <b>62.8</b>회. 검색 유입이 <b>51.8%</b>로 더 커졌고, 모바일 비중은 <b>88.9%</b>입니다. 개설 5개월 만에 <b>160&#8594;2,989</b>(+1,768%).';
+  ].map(function(r){return '&lt;div class="kpi"&gt;&lt;div class="k"&gt;'+r[0]+'&lt;/div&gt;&lt;div class="v"&gt;'+r[1]+'&lt;/div&gt;&lt;div class="d '+r[3]+'"&gt;'+r[2]+'&lt;/div&gt;&lt;/div&gt;'}).join('');
+  document.getElementById('headline').innerHTML='핵심: 월 UV &lt;b&gt;2,160&amp;#8594;2,989&lt;/b&gt;(+38%), 조회수 &lt;b&gt;3,241&amp;#8594;5,040&lt;/b&gt;(+55%). &lt;b&gt;답사기&lt;/b&gt;가 상위 글 조회의 &lt;b&gt;80.6%&lt;/b&gt;(2,826회)를 차지하며 편당 평균 &lt;b&gt;62.8&lt;/b&gt;회. 검색 유입이 &lt;b&gt;51.8%&lt;/b&gt;로 더 커졌고, 모바일 비중은 &lt;b&gt;88.9%&lt;/b&gt;입니다. 개설 5개월 만에 &lt;b&gt;160&amp;#8594;2,989&lt;/b&gt;(+1,768%).';
 
   (function(){var W=400,H=210,pl=42,pr=14,pt=16,pb=28,mx=3200;
     var xs=DATA.uv.map(function(d,i){return pl+(W-pl-pr)*i/(DATA.uv.length-1)});
     var ys=DATA.uv.map(function(d){return pt+(H-pt-pb)*(1-d.v/mx)});
-    var g='';[0,1600,3200].forEach(function(v){var y=pt+(H-pt-pb)*(1-v/mx);g+='<line x1="'+pl+'" y1="'+y+'" x2="'+(W-pr)+'" y2="'+y+'" stroke="'+C.line+'"/>'+T(pl-6,y+3,v.toLocaleString(),{a:'end',s:10})});
+    var g='';[0,1600,3200].forEach(function(v){var y=pt+(H-pt-pb)*(1-v/mx);g+='&lt;line x1="'+pl+'" y1="'+y+'" x2="'+(W-pr)+'" y2="'+y+'" stroke="'+C.line+'"/&gt;'+T(pl-6,y+3,v.toLocaleString(),{a:'end',s:10})});
     var line=xs.map(function(x,i){return (i?'L':'M')+x+' '+ys[i]}).join(' ');
     var area=line+' L'+xs[xs.length-1]+' '+(H-pb)+' L'+xs[0]+' '+(H-pb)+' Z';
-    var pts='';DATA.uv.forEach(function(d,i){pts+='<circle cx="'+xs[i]+'" cy="'+ys[i]+'" r="4.5" fill="'+C.gold+'"/>'+T(xs[i],ys[i]-9,d.v.toLocaleString(),{a:'middle',s:11,fill:C.ink,w:700})+T(xs[i],H-10,d.p,{a:'middle',s:11})});
-    document.getElementById('uvChart').innerHTML=svg(W,H,g+'<path d="'+area+'" fill="rgba(212,160,23,.15)"/><path d="'+line+'" fill="none" stroke="'+C.gold+'" stroke-width="3"/>'+pts);
+    var pts='';DATA.uv.forEach(function(d,i){pts+='&lt;circle cx="'+xs[i]+'" cy="'+ys[i]+'" r="4.5" fill="'+C.gold+'"/&gt;'+T(xs[i],ys[i]-9,d.v.toLocaleString(),{a:'middle',s:11,fill:C.ink,w:700})+T(xs[i],H-10,d.p,{a:'middle',s:11})});
+    document.getElementById('uvChart').innerHTML=svg(W,H,g+'&lt;path d="'+area+'" fill="rgba(212,160,23,.15)"/&gt;&lt;path d="'+line+'" fill="none" stroke="'+C.gold+'" stroke-width="3"/&gt;'+pts);
   })();
 
   (function(){var W=400,H=210,cx=110,cy=105,r=74,sw=30,cir=2*Math.PI*r,off=0,seg='';
     DATA.channel.forEach(function(c){var frac=c[1]/100,len=frac*cir;
-      seg+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="'+c[2]+'" stroke-width="'+sw+'" stroke-dasharray="'+len+' '+(cir-len)+'" stroke-dashoffset="'+(-off)+'" transform="rotate(-90 '+cx+' '+cy+')"/>';off+=len});
-    var leg='';DATA.channel.forEach(function(c,i){var y=34+i*32;leg+='<rect x="228" y="'+(y-10)+'" width="12" height="12" rx="2" fill="'+c[2]+'"/>'+T(248,y,c[0],{fill:C.ink,s:12})+T(392,y,c[1]+'%',{a:'end',s:12,fill:C.muted,w:700})});
+      seg+='&lt;circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="'+c[2]+'" stroke-width="'+sw+'" stroke-dasharray="'+len+' '+(cir-len)+'" stroke-dashoffset="'+(-off)+'" transform="rotate(-90 '+cx+' '+cy+')"/&gt;';off+=len});
+    var leg='';DATA.channel.forEach(function(c,i){var y=34+i*32;leg+='&lt;rect x="228" y="'+(y-10)+'" width="12" height="12" rx="2" fill="'+c[2]+'"/&gt;'+T(248,y,c[0],{fill:C.ink,s:12})+T(392,y,c[1]+'%',{a:'end',s:12,fill:C.muted,w:700})});
     document.getElementById('chanChart').innerHTML=svg(W,H,seg+T(cx,cy+5,'검색 52%',{a:'middle',s:13,fill:C.ink,w:700})+leg);
   })();
 
@@ -136,19 +136,19 @@ try{
     var g=T(cx-half,14,'◀ 남',{s:11,fill:C.eng,a:'start'})+T(cx+half,14,'여 ▶',{s:11,fill:C.story,a:'end'});
     rows.forEach(function(r,i){var y=pt+i*(rh+gap),m=r[1],f=r[2];
       var mw=half*m/mx,fw=half*f/mx;
-      g+='<rect x="'+(cx-mw)+'" y="'+y+'" width="'+mw+'" height="'+rh+'" fill="'+C.eng+'" rx="2"/>';
-      g+='<rect x="'+cx+'" y="'+y+'" width="'+fw+'" height="'+rh+'" fill="'+C.story+'" rx="2"/>';
+      g+='&lt;rect x="'+(cx-mw)+'" y="'+y+'" width="'+mw+'" height="'+rh+'" fill="'+C.eng+'" rx="2"/&gt;';
+      g+='&lt;rect x="'+cx+'" y="'+y+'" width="'+fw+'" height="'+rh+'" fill="'+C.story+'" rx="2"/&gt;';
       g+=T(cx,y+rh-4,r[0],{a:'middle',s:9.5,fill:C.ink});
-      if(m>110)g+=T(cx-mw+3,y+rh-4,m,{s:9,fill:'#fff'});
-      if(f>110)g+=T(cx+fw-3,y+rh-4,f,{a:'end',s:9,fill:'#fff'});
+      if(m&gt;110)g+=T(cx-mw+3,y+rh-4,m,{s:9,fill:'#fff'});
+      if(f&gt;110)g+=T(cx+fw-3,y+rh-4,f,{a:'end',s:9,fill:'#fff'});
     });
     document.getElementById('ageChart').innerHTML=svg(W,H,g);
   })();
 
   (function(){var d=DATA.cat,W=400,H=210,pl=20,pb=40,pt=14,mx=70,bw=(W-pl-14)/d.length;
-    var g='';[0,35,70].forEach(function(v){var y=pt+(H-pt-pb)*(1-v/mx);g+='<line x1="'+pl+'" y1="'+y+'" x2="'+(W-8)+'" y2="'+y+'" stroke="'+C.line+'"/>'+T(pl-2,y+3,v,{a:'end',s:9})});
+    var g='';[0,35,70].forEach(function(v){var y=pt+(H-pt-pb)*(1-v/mx);g+='&lt;line x1="'+pl+'" y1="'+y+'" x2="'+(W-8)+'" y2="'+y+'" stroke="'+C.line+'"/&gt;'+T(pl-2,y+3,v,{a:'end',s:9})});
     d.forEach(function(c,i){var x=pl+8+i*bw,h=(H-pt-pb)*(c[3]/mx),y=(H-pb)-h,w=bw-22;
-      g+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+c[4]+'" rx="4"/>';
+      g+='&lt;rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+c[4]+'" rx="4"/&gt;';
       g+=T(x+w/2,y-5,c[3],{a:'middle',s:11,fill:C.ink,w:700});
       g+=T(x+w/2,H-24,c[0],{a:'middle',s:10.5,fill:C.ink});
       g+=T(x+w/2,H-11,'('+c[1]+'편)',{a:'middle',s:9.5});
@@ -159,7 +159,7 @@ try{
   (function(){var d=DATA.top,W=760,rh=26,gap=8,pt=6,pl=8,H=pt+d.length*(rh+gap),mx=520,bx=250,bw=W-bx-46;
     var g='';d.forEach(function(t,i){var y=pt+i*(rh+gap),w=bw*t[1]/mx;
       g+=T(pl,y+rh/2+4,(i+1)+'. '+t[0],{s:12,fill:C.ink});
-      g+='<rect x="'+bx+'" y="'+y+'" width="'+w+'" height="'+rh+'" fill="'+t[2]+'" rx="4"/>';
+      g+='&lt;rect x="'+bx+'" y="'+y+'" width="'+w+'" height="'+rh+'" fill="'+t[2]+'" rx="4"/&gt;';
       g+=T(bx+w+6,y+rh/2+4,t[1],{s:12,fill:C.ink,w:700});
     });
     document.getElementById('topChart').innerHTML=svg(W,H,g);
@@ -167,6 +167,6 @@ try{
 }catch(e){
   document.getElementById('headline').innerHTML='렌더링 오류: '+e.message;
 }
-</script>
-</body>
-</html>
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;

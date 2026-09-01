@@ -1,78 +1,28 @@
-{
- "total": 69,
- "more": false,
- "hits": [
-  {
-   "path": "/KIMMANMIN",
-   "title": "김만민 건축사 — 대성건축사사무소",
-   "count": 37,
-   "event": false
-  },
-  {
-   "path": "/manmin-blog-report",
-   "title": "MANMIN 블로그 리포트",
-   "count": 13,
-   "event": false
-  },
-  {
-   "path": "/manmin-blog-report/youtube/index.html",
-   "title": "MANMIN 유튜브 리포트",
-   "count": 5,
-   "event": false
-  },
-  {
-   "path": "/manmin-blog-report/index.html",
-   "title": "MANMIN 블로그 리포트",
-   "count": 4,
-   "event": false
-  },
-  {
-   "path": "/manmin-blog-report/youtube/2026-07/index.html",
-   "title": "MANMIN 유튜브 분석 · 2026.07 월간",
-   "count": 3,
-   "event": false
-  },
-  {
-   "path": "/manmin-blog-report/youtube/index.html?v=2",
-   "title": "MANMIN 유튜브 리포트",
-   "count": 1,
-   "event": false
-  },
-  {
-   "path": "/manmin-blog-report/2026-07/dashboard.html",
-   "title": "MANMIN 블로그 성과 대시보드",
-   "count": 1,
-   "event": false
-  },
-  {
-   "path": "/manmin-blog-report/2026-07/index.html",
-   "title": "MANMIN 블로그 분석 · 2026.07 월간",
-   "count": 1,
-   "event": false
-  },
-  {
-   "path": "/manmin-blog-report/youtube",
-   "title": "MANMIN 유튜브 리포트",
-   "count": 1,
-   "event": false
-  },
-  {
-   "path": "/manmin-blog-report/2026-06/dashboard.html",
-   "title": "MANMIN 블로그 성과 대시보드",
-   "count": 1,
-   "event": false
-  },
-  {
-   "path": "/manmin-blog-report/2026-06/index.html",
-   "title": "MANMIN 블로그 분석 · 2026.06 월간",
-   "count": 1,
-   "event": false
-  },
-  {
-   "path": "/manmin-blog-report/youtube/2026-06/index.html",
-   "title": "MANMIN 유튜브 분석 · 2026.06 월간",
-   "count": 1,
-   "event": false
-  }
- ]
-}
+{"total":214,"more":false,"hits":[
+{"path":"/KIMMANMIN","title":"김만민 건축사 — 대성건축사사무소","count":99,"event":false},
+{"path":"/manmin-law","title":"MANMIN LEGAL REVIEW — 만민 법규 검토 요약","count":27,"event":false},
+{"path":"/manmin-blog-report","title":"MANMIN 블로그 리포트","count":19,"event":false},
+{"path":"/ventilation-equipment","title":"환기설비 — 기계환기 법정 환기량 산정","count":9,"event":false},
+{"path":"/manmin-blog-report/youtube/index.html","title":"MANMIN 유튜브 리포트","count":9,"event":false},
+{"path":"/manmin-blog-report/index.html","title":"MANMIN 블로그 리포트","count":8,"event":false},
+{"path":"/u-value-app-","title":"열관류율 종합 검토 시스템 [MANMIN-Ver3.1] | 만민 건축사 신사옥 신축공사 설계용역","count":5,"event":false},
+{"path":"/1architect-fee-app/index.html","title":"공공기관 건축사 업무대가 산출기 [MANMIN-Ver3.0]","count":4,"event":false},
+{"path":"/portal","title":"ENGINEER KIM MANMIN · 소방 펌프 계산서 통합 포털","count":4,"event":false},
+{"path":"/manmin-blog-report/youtube/2026-07/index.html","title":"MANMIN 유튜브 분석 · 2026.07 월간","count":4,"event":false},
+{"path":"/fire-hydrant-calc","title":"옥내소화전 펌프 용량 계산서","count":3,"event":false},
+{"path":"/Energy-Performance-Index/index.html","title":"성능지표 | EPI 에너지성능지표 산정기 [MANMIN-Ver3.0]","count":3,"event":false},
+{"path":"/Energy-Performance-Index","title":"성능지표 | EPI 에너지성능지표 산정기 [MANMIN-Ver3.0]","count":3,"event":false},
+{"path":"/1architect-fee-app","title":"공공기관 건축사 업무대가 산출기 [MANMIN-Ver3.0]","count":3,"event":false},
+{"path":"/u-value-app-/index.html","title":"열관류율 종합 검토 시스템 [MANMIN-Ver3.1] | 만민 건축사 신사옥 신축공사 설계용역","count":2,"event":false},
+{"path":"/manmin-blog-report/2026-07/index.html","title":"MANMIN 블로그 분석 · 2026.07 월간","count":2,"event":false},
+{"path":"/Fire-Protection-Systems/index.html","title":"ENGINEER KIM MANMIN · 소방시설 설치 검토 시스템 26MANMIN-Vre3.0","count":1,"event":false},
+{"path":"/fire-hydrant-calc/index.html","title":"옥내소화전 펌프 용량 계산서","count":1,"event":false},
+{"path":"/ventilation-equipment/index.html","title":"환기설비 — 기계환기 법정 환기량 산정","count":1,"event":false},
+{"path":"/manmin-law/index.html","title":"MANMIN LEGAL REVIEW — 만민 법규 검토 요약","count":1,"event":false},
+{"path":"/manmin-blog-report/youtube/index.html?v=2","title":"MANMIN 유튜브 리포트","count":1,"event":false},
+{"path":"/manmin-blog-report/2026-07/dashboard.html","title":"MANMIN 블로그 성과 대시보드","count":1,"event":false},
+{"path":"/manmin-blog-report/youtube","title":"MANMIN 유튜브 리포트","count":1,"event":false},
+{"path":"/manmin-blog-report/2026-06/dashboard.html","title":"MANMIN 블로그 성과 대시보드","count":1,"event":false},
+{"path":"/manmin-blog-report/2026-06/index.html","title":"MANMIN 블로그 분석 · 2026.06 월간","count":1,"event":false},
+{"path":"/manmin-blog-report/youtube/2026-06/index.html","title":"MANMIN 유튜브 분석 · 2026.06 월간","count":1,"event":false}
+]}

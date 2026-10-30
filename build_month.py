@@ -296,7 +296,26 @@ PAGE="""<!DOCTYPE html>
 
 LANDING="""<!DOCTYPE html>
 <html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MANMIN 블로그 리포트</title><link rel="icon" href="{fav}" type="image/svg+xml">{pwa}
+<title>MANMIN 블로그 리포트</title>
+<!-- 링크 미리보기(네이버 · 카카오 · SNS) — 2026-10-30 비WAP 확대 -->
+<link rel="canonical" href="https://manminkim-eng.github.io/manmin-blog-report/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MANMIN ENGINEERING">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="MANMIN 블로그 리포트">
+<meta property="og:description" content="네이버 블로그 manmin72(건축사 김만민) 월간 성과 리포트">
+<meta property="og:url" content="https://manminkim-eng.github.io/manmin-blog-report/">
+<meta property="og:image" content="https://manminkim-eng.github.io/manmin-blog-report/og-card.jpg">
+<meta property="og:image:secure_url" content="https://manminkim-eng.github.io/manmin-blog-report/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MANMIN 블로그 리포트">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MANMIN 블로그 리포트">
+<meta name="twitter:description" content="네이버 블로그 manmin72(건축사 김만민) 월간 성과 리포트">
+<meta name="twitter:image" content="https://manminkim-eng.github.io/manmin-blog-report/og-card.jpg">
+<link rel="icon" href="{fav}" type="image/svg+xml">{pwa}
 <style>"""+STYLE+"""
  .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:22px}
  .mcard{display:block;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:14px;padding:18px 20px;text-decoration:none;color:var(--ink);transition:.15s}

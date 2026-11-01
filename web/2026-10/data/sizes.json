@@ -1,0 +1,30 @@
+{
+ "stats": [
+  {
+   "id": "phone",
+   "name": "",
+   "count": 113
+  },
+  {
+   "id": "tablet",
+   "name": "",
+   "count": 5
+  },
+  {
+   "id": "desktop",
+   "name": "",
+   "count": 200
+  },
+  {
+   "id": "desktophd",
+   "name": "",
+   "count": 7
+  },
+  {
+   "id": "unknown",
+   "name": "",
+   "count": 1
+  }
+ ],
+ "more": false
+}

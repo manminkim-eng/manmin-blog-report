@@ -1,0 +1,30 @@
+{
+ "stats": [
+  {
+   "id": "Windows",
+   "name": "Windows",
+   "count": 180
+  },
+  {
+   "id": "Android",
+   "name": "Android",
+   "count": 116
+  },
+  {
+   "id": "Linux",
+   "name": "Linux",
+   "count": 28
+  },
+  {
+   "id": "macOS",
+   "name": "macOS",
+   "count": 1
+  },
+  {
+   "id": "iOS",
+   "name": "iOS",
+   "count": 1
+  }
+ ],
+ "more": false
+}

@@ -1,0 +1,15 @@
+{
+ "stats": [
+  {
+   "id": "Chrome",
+   "name": "Chrome",
+   "count": 324
+  },
+  {
+   "id": "Safari",
+   "name": "Safari",
+   "count": 2
+  }
+ ],
+ "more": false
+}

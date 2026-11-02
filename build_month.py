@@ -331,14 +331,55 @@ LANDING="""<!DOCTYPE html>
  <header><div class="brand"><img src="{fav}" alt="MANMIN"><div>
    <h1>MANMIN 블로그 성과 리포트</h1>
    <div class="sub">네이버 블로그 manmin72 월간 분석 아카이브 · 건축사 김만민(#20072)</div></div></div>
-   <div class="period">총 {n}개월 색인</div></header>
+   <div class="hr"><div class="period">총 {n}개월 색인</div><button type="button" id="ib-btn" class="ib-btn" hidden>📲 홈 화면에 설치</button></div></header>
  <div class="chtabs"><a class="ct active">📝 네이버 블로그</a><a class="ct" href="youtube/index.html">▶ 유튜브</a><a class="ct" href="web/index.html">🛠 엔지니어링 웹</a></div>
  <div class="lead"><b>MANMIN 답사·엔지니어링</b> 블로그의 월간 방문·유입·콘텐츠·이웃 지표를 매월 색인합니다. 아래 월을 선택하면 해당 월 상세 인덱스로 이동합니다.</div>
  {trend}
  <div class="mgrid">{cards}</div>
  <footer>매월 초 갱신 · <a href="https://blog.naver.com/manmin72">blog.naver.com/manmin72</a> ·
   <a href="https://manminkim-eng.github.io/KIMMANMIN/">엔지니어링 플랫폼</a></footer>
-</div></body></html>"""
+</div>
+<!-- 홈 화면 설치 단추 — 2026-11-02 -->
+<div id="ib-modal" class="ib-modal" hidden><div class="ib-box" role="dialog" aria-modal="true" aria-labelledby="ib-t">
+ <h3 id="ib-t">홈 화면에 ‘민블로그’ 설치</h3><div id="ib-body"></div>
+ <button type="button" class="ib-close" id="ib-close">닫기</button></div></div>
+<style>
+ .hr{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+ .ib-btn{font:inherit;font-size:12.5px;font-weight:700;color:#0B1626;background:var(--gold);border:0;border-radius:999px;padding:8px 14px;cursor:pointer}
+ .ib-btn[hidden],.ib-modal[hidden]{display:none}
+ .ib-modal{position:fixed;inset:0;background:rgba(5,10,20,.72);display:flex;align-items:flex-end;justify-content:center;z-index:50;padding:16px}
+ .ib-box{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:14px;max-width:420px;width:100%;padding:18px;font-size:13.5px}
+ .ib-box h3{font-size:15px;margin-bottom:10px}
+ .ib-box p{margin-bottom:8px}
+ .ib-box ol{padding-left:20px;line-height:1.9}
+ .ib-box b{color:var(--gold)}
+ .ib-close{margin-top:14px;width:100%;font:inherit;font-weight:700;background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px;cursor:pointer}
+ @media(min-width:861px){.ib-modal{align-items:center}}
+</style>
+<script>
+(function(){
+ var btn=document.getElementById('ib-btn'),modal=document.getElementById('ib-modal'),body=document.getElementById('ib-body'),dp=null;
+ var ua=navigator.userAgent,ios=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),
+     kakao=/KAKAOTALK/i.test(ua),android=/Android/i.test(ua);
+ if(window.matchMedia('(display-mode: standalone)').matches||navigator.standalone){return;}
+ btn.hidden=false;
+ window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;});
+ window.addEventListener('appinstalled',function(){btn.hidden=true;hide();});
+ function show(h){body.innerHTML=h;modal.hidden=false;}
+ function hide(){modal.hidden=true;}
+ document.getElementById('ib-close').onclick=hide;
+ modal.onclick=function(e){if(e.target===modal)hide();};
+ btn.onclick=function(){
+  if(dp){dp.prompt();dp.userChoice.then(function(){dp=null;});return;}
+  if(kakao){
+   if(android){location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(location.href);}
+   show('<p>카카오톡 안에서는 설치되지 않습니다.</p><ol><li>화면 구석의 <b>⋮</b> 또는 <b>⋯</b> 메뉴를 엽니다.</li><li><b>다른 브라우저로 열기</b>'+(ios?'(Safari)':'(Chrome)')+'를 고릅니다.</li><li>열린 페이지에서 이 단추를 다시 누릅니다.</li></ol>');return;}
+  if(ios){show('<ol><li>아래쪽 <b>공유</b> 단추(□↑)를 누릅니다.</li><li><b>홈 화면에 추가</b>를 고릅니다.</li><li>이름이 <b>민블로그</b>인지 보고 <b>추가</b>를 누릅니다.</li></ol>');return;}
+  show('<ol><li>브라우저 오른쪽 위 <b>⋮</b> 메뉴를 엽니다.</li><li><b>앱 설치</b> 또는 <b>홈 화면에 추가</b>를 고릅니다.</li><li>이름이 <b>민블로그</b>인지 보고 <b>설치</b>를 누릅니다.</li></ol>');
+ };
+})();
+</script>
+</body></html>"""
 
 if __name__=="__main__":
     ap=argparse.ArgumentParser()

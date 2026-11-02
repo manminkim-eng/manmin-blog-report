@@ -24,7 +24,7 @@ def head_tags(rel):
             '<meta name="mobile-web-app-capable" content="yes">'
             '<meta name="apple-mobile-web-app-capable" content="yes">'
             '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">'
-            '<meta name="apple-mobile-web-app-title" content="MANMIN 블로그">'
+            '<meta name="apple-mobile-web-app-title" content="민블로그">'
             '<script data-goatcounter="https://manmin.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>')
 
 def render(tpl, **kw):
